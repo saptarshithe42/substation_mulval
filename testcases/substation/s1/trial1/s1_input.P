@@ -1,0 +1,12 @@
+attackerLocated(scada_network).
+attackGoal(execCode(scada_host, _)).
+
+hacl(scada_network, scada_host, _, _).
+hacl(scada_host, plc_host, _, _).
+hacl(plc_host, scada_host, _, _).
+
+/* scada host / HMI */
+networkServiceInfo(scada_host, libiec61850_1_4, _, _, _).
+vulExists(scada_host, 'CVE-2020-15158', libiec61850_1_4, remoteExploit, privEscalation).
+
+

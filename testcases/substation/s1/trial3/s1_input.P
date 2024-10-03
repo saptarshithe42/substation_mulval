@@ -1,0 +1,40 @@
+attackerLocated(scada_network).
+attackGoal(execCode(_, _)).
+
+/* ----------------------------------------------------------------- */
+
+hacl(scada_network, scada_host, _, _).
+hacl(scada_host, plc_host, _, _).
+hacl(plc_host, scada_host, _, _).
+
+/* programs */
+
+isProgram(hmi_program).
+isProgram(file_program).
+
+/* libraries */
+
+isLibrary(libiec61850_V_1_4).
+
+/* program-library dependencies */
+
+dependsOn(hmi_program, libiec61850_V_1_4).
+
+/* program vulnerabilities */
+
+vulExistsProgram(file_program, 'CVE-2020-15158', remoteExploit, privEscalation).
+
+/* library vulnerabilities */
+
+vulExistsLibrary(libiec61850_V_1_4, 'CVE-2020-15158', remoteExploit, privEscalation).
+
+/* scada host / HMI */
+
+networkServiceInfo(scada_host, hmi_program, _, _, _).
+networkServiceInfo(scada_host, file_program, _, _, _).
+
+
+
+
+	
+

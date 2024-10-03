@@ -1,0 +1,31 @@
+/* custom rules */
+
+primitive(isProgram(ProgramName)).
+primitive(isLibrary(LibraryName)).
+primitive(dependsOn(Program, Library)).
+primitive(vulExistsLibrary(Library, CVE_ID, Range, Consequence)).
+primitive(vulExistsProgram(Program, CVE_ID, Range, Consequence)).
+/* primitive(runsProgram(Host, Program, Protocol, Port, User)). */
+
+
+:- table vulExists/5.
+
+
+interaction_rule(
+   (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
+	dependsOn(Program, Library),
+	vulExistsLibrary(Library, CVE_ID, Range, Consequence)),
+   rule_desc('If a host runs a program, which depends on a library, that has a vulnerability, then the host also has the same vulnerability.',
+   0.5)).
+   
+   
+interaction_rule(
+   (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
+	vulExistsProgram(Program, CVE_ID, Range, Consequence)),
+   rule_desc('If a host runs a program, that has a vulnerability, then the host also has the same vulnerability.',
+   0.5)).
+
+
+
+
+
