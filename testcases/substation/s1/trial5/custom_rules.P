@@ -8,7 +8,7 @@ primitive(vulExistsProgram(Program, CVE_ID, Range, Consequence)).
 primitive(uses(Host, Program)).
 
 derived(crashDevice(Host)).
-
+derived(restartDevice(Host)).
 
 
 interaction_rule(
@@ -25,7 +25,8 @@ interaction_rule(
 	vulExistsProgram(Program, CVE_ID, Range, Consequence)),
    rule_desc('If a host runs a program, that has a vulnerability, then the host also has the same vulnerability.',
    0.5)).
-
+   
+   
 
 interaction_rule(
    (crashDevice(Host) :-
@@ -33,6 +34,15 @@ interaction_rule(
 	vulExists(Host, CVE_ID, Program, remoteExploit, deviceCrash)),
    rule_desc('Vulnerability that leads to device crash.',
    0.5)).
+   
+   
+interaction_rule(
+   (restartDevice(Host) :-
+   	execCode(Host, _),
+	vulExists(Host, CVE_ID, Program, localExploit, deviceRestart)),
+   rule_desc('Vulnerability that leads to device restart.',
+   0.5)).
+
 
 
 
