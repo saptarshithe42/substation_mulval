@@ -9,6 +9,7 @@ primitive(uses(Host, Program)).
 
 derived(crashDevice(Host)).
 derived(restartDevice(Host)).
+derived(leakCredential(Host)).
 
 
 interaction_rule(
@@ -22,6 +23,7 @@ interaction_rule(
    
 interaction_rule(
    (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
+   	uses(Host, Program),
 	vulExistsProgram(Program, CVE_ID, Range, Consequence)),
    rule_desc('If a host runs a program, that has a vulnerability, then the host also has the same vulnerability.',
    0.5)).
@@ -41,6 +43,15 @@ interaction_rule(
    	execCode(Host, _),
 	vulExists(Host, CVE_ID, Program, localExploit, deviceRestart)),
    rule_desc('Vulnerability that leads to device restart.',
+   0.5)).
+   
+   
+interaction_rule(
+   (leakCredential(Host) :-
+   	/* execCode(Host, _), */
+   	netAccess(Host, _, _),
+	vulExists(Host, CVE_ID, Program, remoteExploit, credentialLeak)),
+   rule_desc('Vulnerability that leads to credential leakage.',
    0.5)).
 
 
