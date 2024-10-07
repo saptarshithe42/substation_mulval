@@ -12,6 +12,7 @@ primitive(uses(Host, Program)).
 derived(crashDevice(Host)).
 derived(restartDevice(Host)).
 derived(leakCredential(Host)).
+derived(corruptConfigs(Host)).
 
 
 interaction_rule(
@@ -71,7 +72,12 @@ interaction_rule(
    rule_desc('Vulnerability that leads to credential leakage.',
    0.5)).
 
-
+interaction_rule(
+   (corruptConfigs(Host) :-
+   	execCode(Host, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, configsCorruption)),
+   rule_desc('Vulnerability that leads to corruption of device configurations.',
+   0.5)).
 
 
 
