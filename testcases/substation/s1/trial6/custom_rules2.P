@@ -17,8 +17,8 @@ derived(leakCredential(Host)).
 interaction_rule(
    (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
    	uses(Host, Program),
-	dependsOn(Program, Library),
-	vulExistsLibrary(Library, CVE_ID, Range, Consequence)),
+	   dependsOn(Program, Library),
+	   vulExistsLibrary(Library, CVE_ID, Range, Consequence)),
    rule_desc('If a host runs a program, which depends on a library, that has a vulnerability, then the host also has the same vulnerability.',
    0.5)).
    
@@ -26,7 +26,7 @@ interaction_rule(
 interaction_rule(
    (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
    	uses(Host, Program),
-	vulExistsProgram(Program, CVE_ID, Range, Consequence)),
+	   vulExistsProgram(Program, CVE_ID, Range, Consequence)),
    rule_desc('If a host runs a program, that has a vulnerability, then the host also has the same vulnerability.',
    0.5)).
 
@@ -35,10 +35,16 @@ interaction_rule(
    (vulExistsLibrary(Library, CVE_ID, Range, Consequence) :-
    	vulExistsLibrary(Library, CVE_ID),
 	   vulProperty(CVE_ID, Range, Consequence)),
-   rule_desc('Library Vulnerability',
+   rule_desc('Library Vulnerability.',
    0.5)).
-   
-   
+
+
+interaction_rule(
+   (vulExistsProgram(Program, CVE_ID, Range, Consequence) :-
+   	vulExistsProgram(Program, CVE_ID),
+	   vulProperty(CVE_ID, Range, Consequence)),
+   rule_desc('Program Vulnerability.',
+   0.5)).
    
 
 interaction_rule(
