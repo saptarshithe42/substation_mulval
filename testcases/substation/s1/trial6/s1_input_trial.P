@@ -1,0 +1,89 @@
+attackerLocated(scada_network).
+
+/* attackGoal(execCode(_, _)). */
+/* attackGoal(crashDevice(_)). */
+attackGoal(restartDevice(_)). 
+/* attackGoal(leakCredential(_)). */
+
+
+/* ----------------------------------------------------------------- */
+
+hacl(scada_network, scada_host, _, _). 
+hacl(scada_host, plc_host1, _, _).
+hacl(plc_host1, scada_host, _, _).
+hacl(plc_host1, ied1, _, _).
+hacl(scada_host, plc_host2, _, _).
+hacl(plc_host2, scada_host, _, _).
+hacl(plc_host2, ied2, _, _).
+hacl(ied1, plc_host1, _, _).
+hacl(plc_host1, ied2, _, _).
+hacl(ied2, plc_host1, _, _).
+
+/* programs */
+
+isProgram('hmi_program').
+isProgram(file_program).
+isProgram(plc_program).
+isProgram(idec_plc_program).
+isProgram(relion_670_ied_firmware).
+isProgram(general_electric_ur_firmware).
+
+/* libraries */
+
+isLibrary(libiec61850_V_1_4).
+isLibrary(relion_update_package_V_2_2).
+isLibrary(ge_ur_bootloader_V_7_0_0).
+
+/* program-library dependencies */
+
+dependsOn('hmi_program', libiec61850_V_1_4).
+
+dependsOn(plc_program, libiec61850_V_1_4).
+
+dependsOn(relion_ied_firmware, relion_update_package_V_2_2).
+
+dependsOn(general_electric_ur_firmware, ge_ur_bootloader_V_7_0_0).
+
+/* program vulnerabilities */
+
+vulExistsProgram(file_program, 'CVE-2020-15158', remoteExploit, privEscalation).
+vulExistsProgram(idec_plc_program, 'CVE-2024-41927', remoteExploit, credentialLeak).
+
+
+/* library vulnerabilities */
+
+vulExistsLibrary(libiec61850_V_1_4, 'CVE-2020-15158', remoteExploit, privEscalation).
+vulExistsLibrary(libiec61850_V_1_4, 'CVE-2022-2972', remoteExploit, deviceCrash).
+vulExistsLibrary(relion_update_package_V_2_2, 'CVE-2022-3864', remoteExploit, privEscalation).
+vulExistsLibrary(relion_update_package_V_2_2, 'CVE-2022-3864', localExploit, deviceRestart).
+vulExistsLibrary(ge_ur_bootloader_V_7_0_0, 'CVE-2021-27430', remoteExploit, credentialLeak).
+
+
+/* programs uses by hosts */
+
+uses(scada_host, 'hmi_program').
+uses(scada_host, file_program).
+uses(plc_host1, plc_program).
+uses(plc_host2, idec_plc_program).
+uses(ied1, relion_ied_firmware).
+uses(ied2, general_electric_ur_firmware).
+
+/* scada host / HMI */
+
+networkServiceInfo(scada_host, 'hmi_program', _, _, _).
+/* networkServiceInfo(scada_host, file_program, _, _, _). */
+
+/* PLC host 1 */
+networkServiceInfo(plc_host1, plc_program, _, _, _).
+
+/* PLC host 2 */
+networkServiceInfo(plc_host2, idec_plc_program, _, _, _).
+
+/* IED1 */
+networkServiceInfo(ied1, relion_ied_firmware, _, _, _). 
+
+/* IED2 */
+networkServiceInfo(ied2, general_electric_ur_firmware, _, _, _).
+
+	
+

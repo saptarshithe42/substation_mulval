@@ -4,10 +4,6 @@ CVE-2024-36059
 Directory Traversal vulnerability in Kalkitech ASE ASE61850 IEDSmart upto and including version 2.3.5 allows attackers to read/write arbitrary files via the IEC61850 File Transfer protocol.
 
 
-CVE-2023-4518
-A vulnerability exists in the input validation of the GOOSE messages where out of range values received and processed by the IED caused a reboot of the device. In order for an attacker to exploit the vulnerability, goose receiving blocks need to be configured.
-
-
 
 
 CVE-2021-27426

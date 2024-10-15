@@ -1,0 +1,98 @@
+attackerLocated(scada_network).
+
+attackGoal(restartDevice(_)). 
+
+hacl(scada_network, scada_host, _, _). 
+hacl(scada_host, plc_host1, _, _).
+hacl(plc_host1, scada_host, _, _).
+hacl(plc_host1, ied1, _, _).
+hacl(scada_host, plc_host2, _, _).
+hacl(plc_host2, scada_host, _, _).
+hacl(plc_host2, ied2, _, _).
+hacl(ied1, plc_host1, _, _).
+hacl(plc_host1, ied2, _, _).
+hacl(ied2, plc_host1, _, _).
+uses(scada_host, "Relion 650 series version 2.2.1 Firmware").
+/* vulProperty(_vulId, _Range, _Consequence) */
+
+/* search keyword : IED */
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2022-3864', remoteExploit, privEscalation).
+vulProperty('CVE-2022-3864', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2513', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, credentialLeak).
+vulProperty('CVE-2021-27428', remoteExploit, configsCorruption).
+vulProperty('CVE-2021-27428', remoteExploit, privEscalation).
+
+
+
+
+
+/* ************************************************************ */
+vulProperty('CVE-2020-15158', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2972', remoteExploit, deviceCrash).
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-41927', remoteExploit, credentialLeak).
+
+
+vulProperty('CVE-2023-4518', remoteExploit, deviceRestart).
+
+/* search keyword : IED */
+
+vulExistsLibrary("GE UR bootloader binary Version 7.00", "CVE-2021-27430").
+vulExistsLibrary("GE UR bootloader binary Version 7.01", "CVE-2021-27430").
+vulExistsLibrary("GE UR bootloader binary Version 7.02", "CVE-2021-27430").
+vulExistsLibrary("Enervista UR Setup tool", "CVE-2021-27428").
+
+vulExistsLibrary("Relion update package", "CVE-2022-3864").
+
+vulExistsLibrary("670 Connectivity Package version from 3.0 to 3.4.1", "CVE-2022-2513").
+vulExistsLibrary("650 Connectivity Package version from 1.3 to 2.4.1", "CVE-2022-2513").
+vulExistsLibrary("SAM600-IO Connectivity Package version from 1.0 to 1.2", "CVE-2022-2513").
+vulExistsLibrary("GMS600 Connectivity Package version from 1.3 to 1.3.1", "CVE-2022-2513").
+vulExistsLibrary("PWC600 Connectivity Package version from 1.1 to 1.3", "CVE-2022-2513").
+vulExistsLibrary("PCM600 3.0", "CVE-2022-2513").
+vulExistsLibrary("IED Connectivity Package version from 4.0.0 to 4.1.1", "CVE-2022-2513").
+
+/* sample version examples of above library vulnerabilities since the exact number of versions is not known */
+vulExistsLibrary("670 Connectivity Package version 3.4.1", "CVE-2022-2513").
+vulExistsLibrary("650 Connectivity Package version 2.4.1", "CVE-2022-2513").
+vulExistsLibrary("SAM600-IO Connectivity Package version 1.0", "CVE-2022-2513").
+vulExistsLibrary("SAM600-IO Connectivity Package version 1.1", "CVE-2022-2513").
+vulExistsLibrary("SAM600-IO Connectivity Package version 1.2", "CVE-2022-2513").
+vulExistsLibrary("GMS600 Connectivity Package version 1.3.0", "CVE-2022-2513").
+vulExistsLibrary("GMS600 Connectivity Package version 1.3.1", "CVE-2022-2513").
+vulExistsLibrary("PWC600 Connectivity Package version 1.1", "CVE-2022-2513").
+vulExistsLibrary("PWC600 Connectivity Package version 1.2", "CVE-2022-2513").
+vulExistsLibrary("PWC600 Connectivity Package version 1.3", "CVE-2022-2513").
+vulExistsLibrary("IED Connectivity Package version 4.1.1", "CVE-2022-2513").
+
+
+vulExistsLibrary("Relion 670 series version 2.2.0 GOOSE message handler", "CVE-2023-4518").
+vulExistsLibrary("Relion 650 series version 2.2.1 GOOSE message handler", "CVE-2023-4518").
+vulExistsLibrary("Relion 670 series version 2.2.1 GOOSE message handler", "CVE-2023-4518").
+vulExistsLibrary("Relion SAM600-IO series version 2.2.1 GOOSE message handler", "CVE-2023-4518").
+
+/* search keyword : IED *//* search keyword : IED */
+
+dependsOn("GE UR Firmware", "GE UR bootloader binary Version X.YZ").
+dependsOn("GE UR Firmware", "Enervista UR Setup tool").
+
+dependsOn("Relion 670 series version 2.2.0 Firmware", "Relion update package").
+dependsOn("Relion 670 series version 2.2.1 Firmware", "Relion update package").
+dependsOn("Relion 670 series version 2.2.2 Firmware", "Relion update package").
+dependsOn("Relion 670 series version 2.2.3 Firmware", "Relion update package").
+dependsOn("Relion 670 series version 2.2.4 Firmware", "Relion update package").
+dependsOn("Relion 670 series version 2.2.5 Firmware", "Relion update package").
+dependsOn("Relion 650 series version 2.2.0 Firmware", "Relion update package").
+dependsOn("Relion 650 series version 2.2.1 Firmware", "Relion update package").
+dependsOn("Relion 650 series version 2.2.4 Firmware", "Relion update package").
+dependsOn("Relion 650 series version 2.2.5 Firmware", "Relion update package").
+dependsOn("Relion SAM600-IO series version 2.2.1 Firmware", "Relion update package").
+
+dependsOn("Relion 670 series version 2.2.0 Firmware", "Relion 670 series version 2.2.0 GOOSE message handler").
+
+dependsOn("Relion 650 series version 2.2.1 Firmware", "Relion 650 series version 2.2.1 GOOSE message handler").
+dependsOn("Relion 670 series version 2.2.1 Firmware", "Relion 670 series version 2.2.1 GOOSE message handler").
+dependsOn("Relion SAM600-IO series version 2.2.1 Firmware", "Relion SAM600-IO series version 2.2.1 GOOSE message handler").
