@@ -1,0 +1,89 @@
+CVE-2024-47136
+Out-of-bounds read vulnerability exists in Kostac PLC Programming Software (Former name: Koyo PLC Programming Software) Version 1.6.14.0 and earlier. Having a user open a specially crafted project file which was saved using Kostac PLC Programming Software Version 1.6.9.0 and earlier may cause a denial-of-service (DoS) condition, arbitrary code execution, and/or information disclosure because the issues exist in parsing of KPP project files.
+
+Published: October 02, 2024; 11:15:02 PM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2024-47135
+Stack-based buffer overflow vulnerability exists in Kostac PLC Programming Software (Former name: Koyo PLC Programming Software) Version 1.6.14.0 and earlier. Having a user open a specially crafted project file which was saved using Kostac PLC Programming Software Version 1.6.9.0 and earlier may cause a denial-of-service (DoS) condition, arbitrary code execution, and/or information disclosure because the issues exist in parsing of KPP project files.
+
+Published: October 02, 2024; 11:15:02 PM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2024-47134
+Out-of-bounds write vulnerability exists in Kostac PLC Programming Software (Former name: Koyo PLC Programming Software) Version 1.6.14.0 and earlier. Having a user open a specially crafted project file which was saved using Kostac PLC Programming Software Version 1.6.9.0 and earlier may cause a denial-of-service (DoS) condition, arbitrary code execution, and/or information disclosure because the issues exist in parsing of KPP project files.
+
+Published: October 02, 2024; 11:15:02 PM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2024-45368
+The H2-DM1E PLC's authentication protocol appears to utilize either a custom encoding scheme or a challenge-response protocol. However, there's an observed anomaly in the H2-DM1E PLC's protocol execution, namely its acceptance of multiple distinct packets as valid authentication responses. This behavior deviates from standard security practices where a single, specific response or encoding pattern is expected for successful authentication.
+
+Published: September 13, 2024; 1:15:12 PM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2024-43099
+The session hijacking attack targets the application layer's control mechanism, which manages authenticated sessions between a host PC and a PLC. During such sessions, a session key is utilized to maintain security. However, if an attacker captures this session key, they can inject traffic into an ongoing authenticated session. To successfully achieve this, the attacker also needs to spoof both the IP address and MAC address of the originating host which is typical of a session-based attack.
+
+
+
+Published: September 03, 2024; 9:15:11 PM -0400 V4.0:(not available)
+V3.1: 4.6 MEDIUM
+V2.0:(not available)
+CVE-2024-41716
+Cleartext storage of sensitive information vulnerability exists in WindLDR and WindO/I-NV4. If this vulnerability is exploited, an attacker who obtained the product's project file may obtain user credentials of the PLC or Operator Interfaces. As a result, an attacker may be able to manipulate and/or suspend the PLC and Operator Interfaces by accessing or hijacking them.
+
+
+Published: July 21, 2024; 4:15:05 AM -0400 V4.0:(not available)
+V3.1: 7.5 HIGH
+V2.0:(not available)
+CVE-2024-38434
+Unitronics Vision PLC – CWE-676: Use of Potentially Dangerous Function may allow security feature bypass
+
+Published: July 21, 2024; 3:15:05 AM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2023-46280
+A vulnerability has been identified in S7-PCT (All versions), Security Configuration Tool (SCT) (All versions), SIMATIC Automation Tool (All versions < V5.0 SP2), SIMATIC BATCH V9.1 (All versions < V9.1 SP2 Upd5), SIMATIC NET PC Software V16 (All versions < V16 Update 8), SIMATIC NET PC Software V17 (All versions), SIMATIC NET PC Software V18 (All versions < V18 SP1), SIMATIC NET PC Software V19 (All versions < V19 Update 2), SIMATIC PCS 7 V9.1 (All versions < V9.1 SP2 UC05), SIMATIC PDM V9.2 (All versions < V9.2 SP2 Upd3), SIMATIC Route Control V9.1 (All versions < V9.1 SP2 Upd3), SIMATIC STEP 7 V5 (All versions), SIMATIC WinCC OA V3.17 (All versions), SIMATIC WinCC OA V3.18 (All versions < V3.18 P025), SIMATIC WinCC OA V3.19 (All versions < V3.19 P010), SIMATIC WinCC Runtime Advanced (All versions), SIMATIC WinCC Runtime Professional V16 (All versions < V16 Update 6), SIMATIC WinCC Runtime Professional V17 (All versions < V17 Update 8), SIMATIC WinCC Runtime Professional V18 (All versions < V18 Update 4), SIMATIC WinCC Runtime Professional V19 (All versions < V19 Update 2), SIMATIC WinCC Unified PC Runtime V18 (All versions), SIMATIC WinCC V7.4 (All versions), SIMATIC WinCC V7.5 (All versions < V7.5 SP2 Update 17), SIMATIC WinCC V8.0 (All versions < V8.0 Update 5), SINAMICS Startdrive (All versions < V19 SP1), SINEC NMS (All versions < V3.0), SINUMERIK ONE virtual (All versions < V6.23), SINUMERIK PLC Programming Tool (All versions), TIA Portal Cloud Connector (All versions < V2.0), Totally Integrated Automation Portal (TIA Portal) V15.1 (All versions), Totally Integrated Automation Portal (TIA Portal) V16 (All versions), Totally Integrated Automation Portal (TIA Portal) V17 (All versions), Totally Integrated Automation Portal (TIA Portal) V18 (All versions < V18 Update 4), Totally Integrated Automation Portal (TIA Portal) V19 (All versions < V19 Update 2). The affected applications contain an out of bounds read vulnerability. This could allow an attacker to cause a Blue Screen of Death (BSOD) crash of the underlying Windows kernel.
+
+Published: May 14, 2024; 12:15:40 PM -0400 V4.0:(not available)
+V3.x:(not available)
+V2.0:(not available)
+CVE-2024-26002
+An improper input validation in the Qualcom plctool allows a local attacker with low privileges to gain root access by changing the ownership of specific files.
+
+Published: March 12, 2024; 5:15:08 AM -0400 V4.0:(not available)
+V3.1: 7.8 HIGH
+V2.0:(not available)
+CVE-2022-45794
+An attacker with network access to the affected PLC (CJ-series and CS-series PLCs, all versions) may use a network protocol to read and write files on the PLC internal memory and memory card.
+
+Published: January 10, 2024; 6:15:08 PM -0500 V4.0:(not available)
+V3.1: 7.5 HIGH
+V2.0:(not available)
+CVE-2023-46144
+A download of code without integrity check vulnerability in PLCnext products allows an remote attacker with low privileges to compromise integrity on the affected engineering station and the connected devices.
+
+Published: December 14, 2023; 9:15:43 AM -0500 V4.0:(not available)
+V3.1: 6.5 MEDIUM
+V2.0:(not available)
+CVE-2023-46143
+Download of Code Without Integrity Check vulnerability in PHOENIX CONTACT classic line PLCs allows an unauthenticated remote attacker to modify some or all applications on a PLC.
+
+Published: December 14, 2023; 9:15:43 AM -0500 V4.0:(not available)
+V3.1: 7.5 HIGH
+V2.0:(not available)
+CVE-2023-46142
+A incorrect permission assignment for critical resource vulnerability in PLCnext products allows an remote attacker with low privileges to gain full access on the affected devices.
+
+Published: December 14, 2023; 9:15:42 AM -0500 V4.0:(not available)
+V3.1: 8.8 HIGH
+V2.0:(not available)
+CVE-2023-6448
+Unitronics VisiLogic before version 9.9.00, used in Vision and Samba PLCs and HMIs, uses a default administrative password. An unauthenticated attacker with network access can take administrative control of a vulnerable system.
+
+
+
+
+
+

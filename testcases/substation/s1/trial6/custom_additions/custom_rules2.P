@@ -13,6 +13,7 @@ derived(crashDevice(Host)).
 derived(restartDevice(Host)).
 derived(leakCredential(Host)).
 derived(corruptConfigs(Host)).
+derived(serviceDenial(Host)).
 
 
 interaction_rule(
@@ -80,5 +81,24 @@ interaction_rule(
    0.5)).
 
 
+interaction_rule(
+   (serviceDenial(Host) :-
+	   vulExists(Host, CVE_ID, Program, remoteExploit, denialOfService)),
+   rule_desc('Vulnerability that leads to denial of service.',
+   0.5)).
+
+
+interaction_rule(
+   (readWriteFiles(Host) :-
+	   vulExists(Host, CVE_ID, Program, remoteExploit, fileReadWrite)),
+   rule_desc('Vulnerability that enables reading and/or writing files on the device.',
+   0.5)).
+
+
+interaction_rule(
+   (traverseDirectory(Host) :-
+	   vulExists(Host, CVE_ID, Program, remoteExploit, directoryTraversal)),
+   rule_desc('Vulnerability that enables directory traversal.',
+   0.5)).
 
 
