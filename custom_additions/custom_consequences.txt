@@ -1,0 +1,7 @@
+deviceCrash
+deviceRestart
+credentialLeak
+configsCorruption
+denialOfService
+fileReadWrite
+directoryTraversal

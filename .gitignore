@@ -66,7 +66,7 @@ testcases/**/*.dot
 testcases/**/*.eps
 testcases/**/*.xml
 testcases/**/*.pdf
-testcases/**/*.txt
+# testcases/**/*.txt
 testcases/**/xsb_log.txt
 testcases/**/run.P
 testcases/**/dynamic_decl.gen

@@ -1,0 +1,29 @@
+1,"execCode(plc_host,_)","OR",0
+2,"RULE 2 (remote exploit of a server program)","AND",0
+3,"netAccess(plc_host,_,_)","OR",0
+4,"RULE 5 (multi-hop access)","AND",0
+5,"hacl(scada_host,plc_host,_,_)","LEAF",1
+4,5,-1
+6,"execCode(scada_host,_)","OR",0
+7,"RULE 2 (remote exploit of a server program)","AND",0
+8,"netAccess(scada_host,_,_)","OR",0
+9,"RULE 6 (direct network access)","AND",0
+10,"hacl(scada_network,scada_host,_,_)","LEAF",1
+9,10,-1
+11,"attackerLocated(scada_network)","LEAF",1
+9,11,-1
+8,9,-1
+7,8,-1
+12,"networkServiceInfo(scada_host,hmi_program,_,_,_)","LEAF",1
+7,12,-1
+13,"vulExists(scada_host,'CVE-2020-15158',hmi_program,remoteExploit,privEscalation)","LEAF",1
+7,13,-1
+6,7,-1
+4,6,-1
+3,4,-1
+2,3,-1
+14,"networkServiceInfo(plc_host,plc_prog,_,_,_)","LEAF",1
+2,14,-1
+15,"vulExists(plc_host,'CVE-2020-15158',plc_prog,remoteExploit,privEscalation)","LEAF",1
+2,15,-1
+1,2,-1

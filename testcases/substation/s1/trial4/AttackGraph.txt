@@ -1,0 +1,41 @@
+1,"crashDevice(plc_host)","OR",0
+2,"RULE 27 (Vulnerability that leads to device crash.)","AND",0
+3,"vulExists(plc_host,'CVE-2022-2972',plc_program,remoteExploit,deviceCrash)","LEAF",1
+2,3,-1
+4,"execCode(plc_host,_)","OR",0
+5,"RULE 2 (remote exploit of a server program)","AND",0
+6,"netAccess(plc_host,_,_)","OR",0
+7,"RULE 5 (multi-hop access)","AND",0
+8,"hacl(scada_host,plc_host,_,_)","LEAF",1
+7,8,-1
+9,"execCode(scada_host,_)","OR",0
+10,"RULE 2 (remote exploit of a server program)","AND",0
+11,"netAccess(scada_host,_,_)","OR",0
+12,"RULE 6 (direct network access)","AND",0
+13,"hacl(scada_network,scada_host,_,_)","LEAF",1
+12,13,-1
+14,"attackerLocated(scada_network)","LEAF",1
+12,14,-1
+11,12,-1
+10,11,-1
+15,"networkServiceInfo(scada_host,hmi_program,_,_,_)","LEAF",1
+10,15,-1
+16,"vulExists(scada_host,'CVE-2020-15158',hmi_program,remoteExploit,privEscalation)","LEAF",1
+10,16,-1
+9,10,-1
+7,9,-1
+6,7,-1
+5,6,-1
+17,"networkServiceInfo(plc_host,plc_program,_,_,_)","LEAF",1
+5,17,-1
+18,"vulExists(plc_host,'CVE-2020-15158',plc_program,remoteExploit,privEscalation)","LEAF",1
+5,18,-1
+4,5,-1
+2,4,-1
+1,2,-1
+19,"crashDevice(scada_host)","OR",0
+20,"RULE 27 (Vulnerability that leads to device crash.)","AND",0
+21,"vulExists(scada_host,'CVE-2022-2972',hmi_program,remoteExploit,deviceCrash)","LEAF",1
+20,21,-1
+20,9,-1
+19,20,-1

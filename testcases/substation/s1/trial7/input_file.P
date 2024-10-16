@@ -36,6 +36,14 @@ vulProperty('CVE-2024-47136', remoteExploit, denialOfService).
 vulProperty('CVE-2024-47136', remoteExploit, privEscalation).
 vulProperty('CVE-2024-47136', remoteExploit, credentialLeak).
 vulProperty('CVE-2024-47136', remoteExploit, fileReadWrite).
+vulProperty('CVE-2022-1667', remoteExploit, privEscalation).
+vulProperty('CVE-2022-1667', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-30318', remoteExploit, privEscalation).
+vulProperty('CVE-2022-30318', remoteExploit, denialOfService).
+vulProperty('CVE-2022-30318', remoteExploit, credentialLeak).
+vulProperty('CVE-2022-30318', remoteExploit, configsCorruption).
+vulProperty('CVE-2022-2003', remoteExploit, credentialLeak).
+vulProperty('CVE-2022-2003', remoteExploit, privEscalation).
 
 /* search keyword : SCADA */
 
@@ -57,6 +65,7 @@ vulProperty('CVE-2023-33472', remoteExploit, credentialLeak).
 vulProperty('CVE-2023-42490', remoteExploit, credentialLeak).
 vulProperty('CVE-2023-42493', remoteExploit, credentialLeak).
 vulProperty('CVE-2024-47221', remoteExploit, privEscalation).
+
 
 /* search keyword : IED */
 
@@ -125,19 +134,42 @@ vulExistsLibrary('Triangle MicroWorks SCADA Data Gateway', 'CVE-2023-39466').
 /* search keyword : PLC */
 
 vulExistsProgram('Kostac PLC Programming Software Version 1.6.11.0', 'CVE-2023-41375').
-
 vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41 and earlier', 'CVE-2024-41927').
 vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41', 'CVE-2024-41927').
 vulExistsProgram('FT1A Series SmartAXIS Lite Ver.2.41 and earlier', 'CVE-2024-41927').
 vulExistsProgram('FT1A Series SmartAXIS Lite Ver.2.41', 'CVE-2024-41927').
-
 vulExistsProgram('Unitronics Vision PLC Software', 'CVE-2024-38435').
-
 vulExistsProgram('SYSMAC CJ-series', 'CVE-2022-45794').
 vulExistsProgram('SYSMAC CS-series', 'CVE-2022-45794').
-
 vulExistsProgram('Kostac PLC Programming Software Version 1.6.9.0', 'CVE-2024-47136').
 vulExistsProgram('Kostac PLC Programming Software Version 1.6.14.0', 'CVE-2024-47136').
+vulExistsProgram('SEPCOS Single Package firmware All versions prior to 1.23.21', 'CVE-2022-1667'). /* examples below */
+vulExistsProgram('SEPCOS Single Package firmware version 1.23.0', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.23.12', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.23.20', 'CVE-2022-1667').
+
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.0', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.1', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.2', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.3', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.4', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.5', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.6', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.24.7', 'CVE-2022-1667').
+
+vulExistsProgram('SEPCOS Single Package firmware version 1.25.0', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.25.1', 'CVE-2022-1667').
+vulExistsProgram('SEPCOS Single Package firmware version 1.25.2', 'CVE-2022-1667').
+
+vulExistsProgram('Honeywell ControlEdge PLC Firmware version 151.0', 'CVE-2022-30318').
+vulExistsProgram('Honeywell ControlEdge PLC Firmware version 151.1', 'CVE-2022-30318').
+
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06DD1 version 2.71', 'CVE-2022-2003').
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06DD2 version 2.71', 'CVE-2022-2003').
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06DR version 2.71', 'CVE-2022-2003').
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06DA version 2.71', 'CVE-2022-2003').
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06AR version 2.71', 'CVE-2022-2003').
+vulExistsProgram('AutomationDirect DirectLOGIC D0-06AA version 2.71', 'CVE-2022-2003').
 
 /* search keyword : SCADA */
 
@@ -166,6 +198,7 @@ vulExistsProgram('SpiderControl SCADA Web Server Software', 'CVE-2024-8232').
 vulExistsProgram('Scada-LTS v2.7.5.2 build 4551883606', 'CVE-2023-33472').
 vulExistsProgram('EisBaer Scada' ,'CVE-2023-42490').
 vulExistsProgram('EisBaer Scada' ,'CVE-2023-42493').
+
 
 /* search keyword : IED */
 
