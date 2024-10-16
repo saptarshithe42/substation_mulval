@@ -1,0 +1,42 @@
+/* search keyword : IED */
+
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ').
+dependsOn('GE UR Firmware', 'Enervista UR Setup tool').
+
+dependsOn('Relion 670 series version 2.2.0 Firmware', 'Relion update package').
+dependsOn('Relion 670 series version 2.2.1 Firmware', 'Relion update package').
+dependsOn('Relion 670 series version 2.2.2 Firmware', 'Relion update package').
+dependsOn('Relion 670 series version 2.2.3 Firmware', 'Relion update package').
+dependsOn('Relion 670 series version 2.2.4 Firmware', 'Relion update package').
+dependsOn('Relion 670 series version 2.2.5 Firmware', 'Relion update package').
+dependsOn('Relion 650 series version 2.2.0 Firmware', 'Relion update package').
+dependsOn('Relion 650 series version 2.2.1 Firmware', 'Relion update package').
+dependsOn('Relion 650 series version 2.2.4 Firmware', 'Relion update package').
+dependsOn('Relion 650 series version 2.2.5 Firmware', 'Relion update package').
+dependsOn('Relion SAM600-IO series version 2.2.1 Firmware', 'Relion update package').
+
+dependsOn('Relion 670 series version 2.2.0 Firmware', 'Relion 670 series version 2.2.0 GOOSE message handler').
+
+dependsOn('Relion 650 series version 2.2.1 Firmware', 'Relion 650 series version 2.2.1 GOOSE message handler').
+dependsOn('Relion 670 series version 2.2.1 Firmware', 'Relion 670 series version 2.2.1 GOOSE message handler').
+dependsOn('Relion SAM600-IO series version 2.2.1 Firmware', 'Relion SAM600-IO series version 2.2.1 GOOSE message handler').
+
+
+
+
+/* test */
+dependsOn('hmi_program', 'GE UR bootloader binary Version 7.00').
+
+
+
+/* search keyword : PLC */
+
+dependsOn('Eaton easyE4 PLC Software', 'Eaton easyE4 PLC password protection functionality version 2.01').
+dependsOn('Delta Electronics DVP32ES2 PLC 1.48', 'Delta Electronics DVP32ES2 PLC 1.48 Password Transmission Handler').
+
+
+/* search keyword : SCADA */
+
+dependsOn('Triangle MicroWorks SCADA Software', 'Triangle MicroWorks SCADA Data Gateway').
+
+

@@ -1,0 +1,27 @@
+/* vulProperty(_vulId, _Range, _Consequence) */
+
+/* search keyword : IED */
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2022-3864', remoteExploit, privEscalation).
+vulProperty('CVE-2022-3864', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2513', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, credentialLeak).
+vulProperty('CVE-2021-27428', remoteExploit, configsCorruption).
+vulProperty('CVE-2021-27428', remoteExploit, privEscalation).
+
+
+
+
+
+/* ************************************************************ */
+vulProperty('CVE-2020-15158', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2972', remoteExploit, deviceCrash).
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-41927', remoteExploit, credentialLeak).
+
+
+
+vulProperty('CVE-2023-4518', remoteExploit, privEscalation).
+vulProperty('CVE-2023-4518', remoteExploit, deviceRestart).
+

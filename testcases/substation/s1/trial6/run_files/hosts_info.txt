@@ -1,0 +1,3 @@
+uses(scada_host, 'hmi_program').
+
+networkServiceInfo(scada_host, 'hmi_program', _, _, _).

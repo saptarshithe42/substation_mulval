@@ -1,0 +1,54 @@
+/* vulProperty(_vulId, _Range, _Consequence) */
+
+/* search keyword : IED */
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2022-3864', remoteExploit, privEscalation).
+vulProperty('CVE-2022-3864', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2513', remoteExploit, deviceRestart).
+vulProperty('CVE-2022-2513', remoteExploit, credentialLeak).
+vulProperty('CVE-2021-27428', remoteExploit, configsCorruption).
+vulProperty('CVE-2021-27428', remoteExploit, privEscalation).
+
+vulProperty('CVE-2020-15158', remoteExploit, privEscalation).
+vulProperty('CVE-2022-2972', remoteExploit, deviceCrash).
+vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-41927', remoteExploit, credentialLeak).
+
+vulProperty('CVE-2023-4518', remoteExploit, privEscalation).
+vulProperty('CVE-2023-4518', remoteExploit, deviceRestart).
+
+/* search keyword : PLC */
+
+vulProperty('CVE-2023-43776', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-6876', remoteExploit, privEscalation).
+vulProperty('CVE-2024-6876', remoteExploit, deviceRestart).
+vulProperty('CVE-2023-41375', remoteExploit, privEscalation).
+vulProperty('CVE-2024-38435', remoteExploit, denialOfService).
+vulProperty('CVE-2023-5459', remoteExploit, denialOfService).
+vulProperty('CVE-2022-45794', remoteExploit, fileReadWrite).
+vulProperty('CVE-2024-47136', remoteExploit, denialOfService).
+vulProperty('CVE-2024-47136', remoteExploit, privEscalation).
+vulProperty('CVE-2024-47136', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-47136', remoteExploit, fileReadWrite).
+
+/* search keyword : SCADA */
+
+vulProperty('CVE-2024-22016', remoteExploit, privEscalation).
+vulProperty('CVE-2024-22096', remoteExploit, fileReadWrite).
+vulProperty('CVE-2024-21869', localExploit, credentialLeak).
+
+vulProperty('CVE-2024-2882', remoteExploit, privEscalation).
+vulProperty('CVE-2024-2882', remoteExploit, fileReadWrite).
+vulProperty('CVE-2024-2882', remoteExploit, credentialLeak).
+
+vulProperty('CVE-2024-5040', remoteExploit, directoryTraversal).
+vulProperty('CVE-2023-39464', remoteExploit, privEscalation).
+vulProperty('CVE-2023-39465', remoteExploit, credentialLeak).
+vulProperty('CVE-2023-39466', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-8232', remoteExploit, fileReadWrite).
+vulProperty('CVE-2023-33472', remoteExploit, privEscalation).
+vulProperty('CVE-2023-33472', remoteExploit, credentialLeak).
+vulProperty('CVE-2023-42490', remoteExploit, credentialLeak).
+vulProperty('CVE-2023-42493', remoteExploit, credentialLeak).
+vulProperty('CVE-2024-47221', remoteExploit, privEscalation).

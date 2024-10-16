@@ -1,0 +1,46 @@
+/* search keyword : IED */
+
+/* search keyword : PLC */
+
+vulExistsProgram('Kostac PLC Programming Software Version 1.6.11.0', 'CVE-2023-41375').
+
+vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41 and earlier', 'CVE-2024-41927').
+vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41', 'CVE-2024-41927').
+vulExistsProgram('FT1A Series SmartAXIS Lite Ver.2.41 and earlier', 'CVE-2024-41927').
+vulExistsProgram('FT1A Series SmartAXIS Lite Ver.2.41', 'CVE-2024-41927').
+
+vulExistsProgram('Unitronics Vision PLC Software', 'CVE-2024-38435').
+
+vulExistsProgram('SYSMAC CJ-series', 'CVE-2022-45794').
+vulExistsProgram('SYSMAC CS-series', 'CVE-2022-45794').
+
+vulExistsProgram('Kostac PLC Programming Software Version 1.6.9.0', 'CVE-2024-47136').
+vulExistsProgram('Kostac PLC Programming Software Version 1.6.14.0', 'CVE-2024-47136').
+
+/* search keyword : SCADA */
+
+vulExistsProgram('Rapid SCADA versions prior to Version 5.8.4', 'CVE-2024-22016'). /* examples below */
+vulExistsProgram('Rapid SCADA Version 5.8.0', 'CVE-2024-22016').
+vulExistsProgram('Rapid SCADA Version 5.8.1', 'CVE-2024-22016').
+vulExistsProgram('Rapid SCADA Version 5.8.2', 'CVE-2024-22016').
+vulExistsProgram('Rapid SCADA Version 5.8.3', 'CVE-2024-22016').
+vulExistsProgram('Rapid SCADA versions prior to Version 5.8.4', 'CVE-2024-22096'). /* examples below */
+vulExistsProgram('Rapid SCADA Version 5.8.0', 'CVE-2024-22096').
+vulExistsProgram('Rapid SCADA Version 5.8.1', 'CVE-2024-22096').
+vulExistsProgram('Rapid SCADA Version 5.8.2', 'CVE-2024-22096').
+vulExistsProgram('Rapid SCADA Version 5.8.3', 'CVE-2024-22096').
+
+vulExistsProgram('Rapid SCADA versions prior to Version 5.8.4', 'CVE-2024-21869'). /* examples below */
+vulExistsProgram('Rapid SCADA Version 5.8.0', 'CVE-2024-21869').
+vulExistsProgram('Rapid SCADA Version 5.8.1', 'CVE-2024-21869').
+vulExistsProgram('Rapid SCADA Version 5.8.2', 'CVE-2024-21869').
+vulExistsProgram('Rapid SCADA Version 5.8.3', 'CVE-2024-21869').
+
+vulExistsProgram('Rapid SCADA Version 5.8.4', 'CVE-2024-47221').
+
+vulExistsProgram('SDG Technologies PnPSCADA', 'CVE-2024-2882').
+vulExistsProgram('LCDS LAquis SCADA', 'CVE-2024-5040').
+vulExistsProgram('SpiderControl SCADA Web Server Software', 'CVE-2024-8232').
+vulExistsProgram('Scada-LTS v2.7.5.2 build 4551883606', 'CVE-2023-33472').
+vulExistsProgram('EisBaer Scada' ,'CVE-2023-42490').
+vulExistsProgram('EisBaer Scada' ,'CVE-2023-42493').
