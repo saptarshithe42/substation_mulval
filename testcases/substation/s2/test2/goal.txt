@@ -1,0 +1,6 @@
+attackerLocated(scada_network).
+
+attackGoal(serviceDenial(_)). 
+
+attackGoal(leakCredential(_)). 
+

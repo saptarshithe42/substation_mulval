@@ -1,0 +1,5 @@
+uses(scada_host, 'Unitronics Vision PLC Software').
+
+vulExists(scada_host, 'hmi_program', 'cve-id-1234', remoteExploit, credentialLeak).
+
+networkServiceInfo(scada_host, 'hmi_program', _, _, _).

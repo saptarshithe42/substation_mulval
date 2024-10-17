@@ -1,0 +1,4 @@
+attackerLocated(scada_network).
+
+attackGoal(serviceDenial(_)). 
+

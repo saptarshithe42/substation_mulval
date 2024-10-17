@@ -12,7 +12,6 @@ vulProperty('CVE-2021-27428', remoteExploit, privEscalation).
 
 vulProperty('CVE-2020-15158', remoteExploit, privEscalation).
 vulProperty('CVE-2022-2972', remoteExploit, deviceCrash).
-vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
 vulProperty('CVE-2024-41927', remoteExploit, credentialLeak).
 
 vulProperty('CVE-2023-4518', remoteExploit, privEscalation).
@@ -21,8 +20,9 @@ vulProperty('CVE-2023-4518', remoteExploit, deviceRestart).
 /* search keyword : PLC */
 
 vulProperty('CVE-2023-43776', remoteExploit, credentialLeak).
+vulProperty('CVE-2023-41374', remoteExploit, privEscalation).
 vulProperty('CVE-2024-6876', remoteExploit, privEscalation).
-vulProperty('CVE-2024-6876', remoteExploit, deviceRestart).
+vulProperty('CVE-2024-6876', remoteExploit, deviceCrash).
 vulProperty('CVE-2023-41375', remoteExploit, privEscalation).
 vulProperty('CVE-2024-38435', remoteExploit, denialOfService).
 vulProperty('CVE-2023-5459', remoteExploit, denialOfService).
@@ -60,5 +60,12 @@ vulProperty('CVE-2023-33472', remoteExploit, credentialLeak).
 vulProperty('CVE-2023-42490', remoteExploit, credentialLeak).
 vulProperty('CVE-2023-42493', remoteExploit, credentialLeak).
 vulProperty('CVE-2024-47221', remoteExploit, privEscalation).
-
+vulProperty('CVE-2024-7901', remoteExploit, crossSiteScripting).
+vulProperty('CVE-2023-42488', remoteExploit, directoryTraversal).
+vulProperty('CVE-2023-42489', remoteExploit, privEscalation).
+vulProperty('CVE-2023-2866', remoteExploit, privEscalation).
+vulProperty('CVE-2023-2866', remoteExploit, denialOfService).
+vulProperty('CVE-2023-3329', remoteExploit, directoryTraversal).
+vulProperty('CVE-2023-3329', remoteExploit, fileReadWrite).
+vulProperty('CVE-2023-3329', remoteExploit, denialOfService).
 

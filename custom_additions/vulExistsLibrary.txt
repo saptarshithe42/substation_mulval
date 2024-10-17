@@ -60,3 +60,4 @@ vulExistsLibrary('Delta Electronics DVP32ES2 PLC 1.48 Password Transmission Hand
 vulExistsLibrary('Triangle MicroWorks SCADA Data Gateway', 'CVE-2023-39464').
 vulExistsLibrary('Triangle MicroWorks SCADA Data Gateway', 'CVE-2023-39465').
 vulExistsLibrary('Triangle MicroWorks SCADA Data Gateway', 'CVE-2023-39466').
+vulExistsLibrary('Scada-LTS 2.7.8 Message Handler', 'CVE-2024-7901').

@@ -1,0 +1,19 @@
+1,"leakCredential(scada_host)","OR",0
+2,"RULE 31 (Vulnerability that leads to credential leakage.)","AND",0
+3,"vulExists(scada_host,hmi_program,'cve-id-1234',remoteExploit,credentialLeak)","LEAF",1
+2,3,-1
+4,"netAccess(scada_host,_,_)","OR",0
+5,"RULE 6 (direct network access)","AND",0
+6,"hacl(scada_network,scada_host,_,_)","LEAF",1
+5,6,-1
+7,"attackerLocated(scada_network)","LEAF",1
+5,7,-1
+4,5,-1
+2,4,-1
+1,2,-1
+8,"serviceDenial(scada_host)","OR",0
+9,"RULE 33 (Vulnerability that leads to denial of service.)","AND",0
+10,"vulExists(scada_host,'CVE-2024-38435','Unitronics Vision PLC Software',remoteExploit,denialOfService)","LEAF",1
+9,10,-1
+9,4,-1
+8,9,-1

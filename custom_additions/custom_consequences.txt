@@ -5,3 +5,4 @@ configsCorruption
 denialOfService
 fileReadWrite
 directoryTraversal
+crossSiteScripting

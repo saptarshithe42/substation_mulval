@@ -3,6 +3,7 @@
 /* search keyword : PLC */
 
 vulExistsProgram('Kostac PLC Programming Software Version 1.6.11.0', 'CVE-2023-41375').
+vulExistsProgram('Kostac PLC Programming Software Version 1.6.11.0', 'CVE-2023-41374').
 vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41 and earlier', 'CVE-2024-41927').
 vulExistsProgram('FT1A Series SmartAXIS Pro Ver.2.41', 'CVE-2024-41927').
 vulExistsProgram('FT1A Series SmartAXIS Lite Ver.2.41 and earlier', 'CVE-2024-41927').
@@ -67,5 +68,8 @@ vulExistsProgram('SpiderControl SCADA Web Server Software', 'CVE-2024-8232').
 vulExistsProgram('Scada-LTS v2.7.5.2 build 4551883606', 'CVE-2023-33472').
 vulExistsProgram('EisBaer Scada' ,'CVE-2023-42490').
 vulExistsProgram('EisBaer Scada' ,'CVE-2023-42493').
-
+vulExistsProgram('EisBaer Scada' ,'CVE-2023-42488').
+vulExistsProgram('EisBaer Scada' ,'CVE-2023-42489').
+vulExistsProgram('Advantech WebAccess version 8.4.5', 'CVE-2023-2866').
+vulExistsProgram('SpiderControl SCADA Webserver version 2.08', 'CVE-2023-3329').
 

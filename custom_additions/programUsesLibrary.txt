@@ -1,6 +1,11 @@
 /* search keyword : IED */
 
-dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ').
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ'). /* examples below */
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.00').
+/* 
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.01').
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.02').
+*/
 dependsOn('GE UR Firmware', 'Enervista UR Setup tool').
 
 dependsOn('Relion 670 series version 2.2.0 Firmware', 'Relion update package').
@@ -23,12 +28,6 @@ dependsOn('Relion SAM600-IO series version 2.2.1 Firmware', 'Relion SAM600-IO se
 
 
 
-
-/* test */
-dependsOn('hmi_program', 'GE UR bootloader binary Version 7.00').
-
-
-
 /* search keyword : PLC */
 
 dependsOn('Eaton easyE4 PLC Software', 'Eaton easyE4 PLC password protection functionality version 2.01').
@@ -38,5 +37,12 @@ dependsOn('Delta Electronics DVP32ES2 PLC 1.48', 'Delta Electronics DVP32ES2 PLC
 /* search keyword : SCADA */
 
 dependsOn('Triangle MicroWorks SCADA Software', 'Triangle MicroWorks SCADA Data Gateway').
+dependsOn('Scada-LTS 2.7.8', 'Scada-LTS 2.7.8 Message Handler').
+
+
+/* test */
+/* dependsOn('hmi_program', 'GE UR bootloader binary Version 7.00'). */
+
+
 
 

@@ -17,7 +17,6 @@ vulProperty('CVE-2021-27428', remoteExploit, privEscalation).
 
 vulProperty('CVE-2020-15158', remoteExploit, privEscalation).
 vulProperty('CVE-2022-2972', remoteExploit, deviceCrash).
-vulProperty('CVE-2021-27430', remoteExploit, credentialLeak).
 vulProperty('CVE-2024-41927', remoteExploit, credentialLeak).
 
 vulProperty('CVE-2023-4518', remoteExploit, privEscalation).
@@ -202,7 +201,12 @@ vulExistsProgram('EisBaer Scada' ,'CVE-2023-42493').
 
 /* search keyword : IED */
 
-dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ').
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ'). /* examples below */
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.00').
+/* 
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.01').
+dependsOn('GE UR Firmware', 'GE UR bootloader binary Version 7.02').
+*/
 dependsOn('GE UR Firmware', 'Enervista UR Setup tool').
 
 dependsOn('Relion 670 series version 2.2.0 Firmware', 'Relion update package').
