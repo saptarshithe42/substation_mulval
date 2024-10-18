@@ -4,8 +4,10 @@ import xml.dom.minidom
 
 URI = "neo4j://localhost:7687"
 AUTH = ("mulval", "12345678")
+attackGraph = "AttackGraph.xml"
 
-docs = xml.dom.minidom.parse("test.xml")
+
+docs = xml.dom.minidom.parse(attackGraph)
 
 arcs = docs.getElementsByTagName("arc")
 
@@ -17,6 +19,9 @@ def getText(nodelist):
             rc.append(node.data)
     return ''.join(rc)
 
+
+indegreeCount = {}
+outdegreeCount = {}
 
 createEdgesCommands = []
 
@@ -33,11 +38,19 @@ for arc in arcs:
 
     edgeSrc = dst
     edgeDst = src
-    # print()
+
+    if edgeDst in indegreeCount:
+        indegreeCount[edgeDst] += 1
+    else:
+        indegreeCount[edgeDst] = 1
+
+    if edgeSrc in outdegreeCount:
+        outdegreeCount[edgeSrc] += 1
+    else:
+        outdegreeCount[edgeSrc] = 1
+
     command = f'MATCH (a:node {{nodeId: "{edgeSrc}"}}), (b:node {{nodeId: "{edgeDst}"}}) CREATE (a)-[:TO]->(b)'
     createEdgesCommands.append(command)
-
-    # srcNode = childNodes.getElementsByTagName("src")
 
 
 for cmd in createEdgesCommands:
@@ -58,14 +71,22 @@ for vertex in vertices:
     if "RULE" in description:
         labels.append("rule")
 
-    labels = [":" + x for x in labels]
+    if "vulExists" in description:
+        labels.append("vulnerability")
 
-    nodeLabels = " ".join(labels)
+    if "hacl" in description:
+        labels.append("hacl_rule")
 
-    # print(description)
+    if "networkServiceInfo" in description:
+        labels.append("network_service_info")
 
     nodeId = getText(vertex.getElementsByTagName("id")[0].childNodes)
-    # print(nodeId)
+
+    if nodeId not in outdegreeCount and indegreeCount[nodeId] == 1:
+        labels.append("goal")
+
+    labels = [":" + x for x in labels]
+    nodeLabels = " ".join(labels)
 
     command = f'CREATE ({nodeLabels} {{nodeId : "{nodeId}", description : "{description}"}})'
 

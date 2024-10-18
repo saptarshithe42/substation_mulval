@@ -1,0 +1,73 @@
+1,"corruptConfigs(ied2)","OR",0
+2,"RULE 32 (Vulnerability that leads to corruption of device configurations.)","AND",0
+3,"vulExists(ied2,'CVE-2021-27428','GE UR Firmware',remoteExploit,configsCorruption)","LEAF",1
+2,3,-1
+4,"execCode(ied2,_)","OR",0
+5,"RULE 2 (remote exploit of a server program)","AND",0
+6,"netAccess(ied2,_,_)","OR",0
+7,"RULE 5 (multi-hop access)","AND",0
+8,"hacl(plc_host1,ied2,_,_)","LEAF",1
+7,8,-1
+9,"execCode(plc_host1,_)","OR",0
+10,"RULE 2 (remote exploit of a server program)","AND",0
+11,"netAccess(plc_host1,_,_)","OR",0
+12,"RULE 5 (multi-hop access)","AND",0
+13,"hacl(scada_host,plc_host1,_,_)","LEAF",1
+12,13,-1
+14,"execCode(scada_host,_)","OR",0
+15,"RULE 2 (remote exploit of a server program)","AND",0
+16,"netAccess(scada_host,_,_)","OR",0
+17,"RULE 6 (direct network access)","AND",0
+18,"hacl(scada_network,scada_host,_,_)","LEAF",1
+17,18,-1
+19,"attackerLocated(scada_network)","LEAF",1
+17,19,-1
+16,17,-1
+15,16,-1
+20,"networkServiceInfo(scada_host,'Rapid SCADA Version 5.8.0',_,_,_)","LEAF",1
+15,20,-1
+21,"vulExists(scada_host,'CVE-2024-22016','Rapid SCADA Version 5.8.0',remoteExploit,privEscalation)","LEAF",1
+15,21,-1
+14,15,-1
+12,14,-1
+11,12,-1
+10,11,-1
+22,"networkServiceInfo(plc_host1,'SEPCOS Single Package firmware version 1.24.0',_,_,_)","LEAF",1
+10,22,-1
+23,"vulExists(plc_host1,'CVE-2022-1667','SEPCOS Single Package firmware version 1.24.0',remoteExploit,privEscalation)","LEAF",1
+10,23,-1
+9,10,-1
+7,9,-1
+6,7,-1
+5,6,-1
+24,"networkServiceInfo(ied2,'GE UR Firmware',_,_,_)","LEAF",1
+5,24,-1
+25,"vulExists(ied2,'CVE-2021-27428','GE UR Firmware',remoteExploit,privEscalation)","LEAF",1
+5,25,-1
+4,5,-1
+2,4,-1
+1,2,-1
+26,"leakCredential(ied2)","OR",0
+27,"RULE 31 (Vulnerability that leads to credential leakage.)","AND",0
+28,"vulExists(ied2,'CVE-2021-27430','GE UR Firmware',remoteExploit,credentialLeak)","LEAF",1
+27,28,-1
+27,6,-1
+26,27,-1
+29,"leakCredential(plc_host2)","OR",0
+30,"RULE 31 (Vulnerability that leads to credential leakage.)","AND",0
+31,"vulExists(plc_host2,'CVE-2023-43776','Eaton easyE4 PLC Software',remoteExploit,credentialLeak)","LEAF",1
+30,31,-1
+32,"netAccess(plc_host2,_,_)","OR",0
+33,"RULE 5 (multi-hop access)","AND",0
+34,"hacl(scada_host,plc_host2,_,_)","LEAF",1
+33,34,-1
+33,14,-1
+32,33,-1
+30,32,-1
+29,30,-1
+35,"readWriteFiles(scada_host)","OR",0
+36,"RULE 34 (Vulnerability that enables reading and/or writing files on the device.)","AND",0
+37,"vulExists(scada_host,'CVE-2024-22096','Rapid SCADA Version 5.8.0',remoteExploit,fileReadWrite)","LEAF",1
+36,37,-1
+36,16,-1
+35,36,-1

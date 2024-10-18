@@ -1,0 +1,24 @@
+/* programs uses by hosts */
+
+uses(scada_host, 'Rapid SCADA Version 5.8.0').
+uses(plc_host1, 'SEPCOS Single Package firmware version 1.24.0').
+uses(plc_host2, 'Eaton easyE4 PLC Software').
+uses(ied1, 'Relion 670 series version 2.2.0 Firmware').
+uses(ied2, 'GE UR Firmware').
+
+/* scada host / HMI */
+
+networkServiceInfo(scada_host, 'Rapid SCADA Version 5.8.0', _, _, _).
+
+/* PLC host 1 */
+networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', _, _, _).
+
+/* PLC host 2 */
+networkServiceInfo(plc_host2, 'Eaton easyE4 PLC Software', _, _, _).
+
+/* IED1 */
+networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', _, _, _). 
+
+/* IED2 */
+networkServiceInfo(ied2, 'GE UR Firmware', _, _, _).
+
