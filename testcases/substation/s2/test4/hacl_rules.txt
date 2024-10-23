@@ -1,0 +1,15 @@
+
+/*
+hacl(scada_network, scada_host, _, _). 
+hacl(scada_host, plc_host1, _, _).
+hacl(plc_host1, scada_host, _, _).
+hacl(plc_host1, ied1, _, _).
+hacl(scada_host, plc_host2, _, _).
+hacl(plc_host2, scada_host, _, _).
+hacl(plc_host2, ied2, _, _).
+hacl(ied1, plc_host1, _, _).
+hacl(plc_host1, ied2, _, _).
+hacl(ied2, plc_host1, _, _).
+*/
+
+

@@ -66,8 +66,10 @@ public class InitializeDB {
 			sql.execute("drop table if exists nvd");                                                                                                                                                                                                        //,primary key(id)
 			sql.execute("create table nvd(id varchar(20) not null,soft varchar(160) not null default 'ndefined',rng varchar(100) not null default 'undefined',lose_types varchar(100) not null default 'undefind',severity varchar(20) not null default 'unefined',access varchar(20) not null default 'unefined');");
 			SAXReader saxReader = new SAXReader();
-			for(int ct = 2002; ct <= year; ct++) {
-				String fname="nvd_xml_files/nvdcve-"+Integer.toString(ct)+".xml";
+			//for(int ct = 2002; ct <= year; ct++) {
+			for(int ct = 2022; ct <= year; ct++) {
+				// String fname="nvd_xml_files/nvdcve-"+Integer.toString(ct)+".xml";
+				String fname="nvd_xml_files/nvdcve-"+Integer.toString(ct)+"trans.xml";
 				Document document = saxReader.read(fname);
 				List entry = document.selectNodes("/*[local-name(.)='nvd']/*[local-name(.)='entry']");
 				Iterator ent = entry.iterator();
