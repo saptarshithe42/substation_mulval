@@ -1,6 +1,6 @@
 attackerLocated(scada_network).
 
-
+/*
 attackGoal(serviceDenial(_)). 
 
 attackGoal(leakCredential(_)). 
@@ -16,13 +16,19 @@ attackGoal(readWriteFiles(_)).
 attackGoal(traverseDirectory(_)).
 
 attackGoal(crossSiteScriptingAttack(_)).
+*/
+
+
+/* attackGoal(execCode(scada_host, _)). */
+
+
+attackGoal(testAttack(scada_host, scada_host2)).
 
 
 
-/* attackGoal(mitmAttack(H1, H2)).  */
-
-/*
 hacl(scada_network, scada_host, _, _). 
+hacl(scada_network, scada_host2, _, _). 
+hacl(scada_host, scada_host2, _, _). 
 hacl(scada_host, plc_host1, _, _).
 hacl(plc_host1, scada_host, _, _).
 hacl(plc_host1, ied1, _, _).
@@ -32,7 +38,12 @@ hacl(plc_host2, ied2, _, _).
 hacl(ied1, plc_host1, _, _).
 hacl(plc_host1, ied2, _, _).
 hacl(ied2, plc_host1, _, _).
-*/
+
+hostInNetwork(scada_host, scada_network).
+hostInNetwork(scada_host2, scada_network).
+
+
+/*
 
 isNetwork(scada_network).
 isNetwork(plc_network).
@@ -43,10 +54,13 @@ hacl(plc_network, ied_network, _, _).
 
 
 hostInNetwork(scada_host, scada_network).
+hostInNetwork(scada_host2, scada_network).
 hostInNetwork(plc_host1, plc_network).
 hostInNetwork(plc_host2, plc_network).
 hostInNetwork(ied1, ied_network).
 hostInNetwork(ied2, ied_network).
+
+*/
 /* vulProperty(_vulId, _Range, _Consequence) */
 
 /* search keyword : IED */
@@ -304,10 +318,14 @@ dependsOn('Scada-LTS 2.7.8', 'Scada-LTS 2.7.8 Message Handler').
 
 
 
+isProtocol(mms).
+
+vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
 
 /* programs uses by hosts */
 
 uses(scada_host, 'Rapid SCADA Version 5.8.0').
+uses(scada_host2, 'Rapid SCADA Version 5.8.0').
 uses(plc_host1, 'SEPCOS Single Package firmware version 1.24.0').
 uses(plc_host2, 'Eaton easyE4 PLC Software').
 uses(ied1, 'Relion 670 series version 2.2.0 Firmware').
@@ -315,7 +333,9 @@ uses(ied2, 'GE UR Firmware').
 
 /* scada host / HMI */
 
-networkServiceInfo(scada_host, 'Rapid SCADA Version 5.8.0', _, _, _).
+networkServiceInfo(scada_host, 'Rapid SCADA Version 5.8.0', mms, _, _).
+
+networkServiceInfo(scada_host2, 'Rapid SCADA Version 5.8.0', mms, _, _).
 
 /* PLC host 1 */
 networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', _, _, _).
@@ -328,4 +348,5 @@ networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', _, _, _).
 
 /* IED2 */
 networkServiceInfo(ied2, 'GE UR Firmware', _, _, _).
+
 
