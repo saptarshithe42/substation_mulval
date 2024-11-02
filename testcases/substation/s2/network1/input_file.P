@@ -16,16 +16,25 @@ attackGoal(readWriteFiles(_)).
 attackGoal(traverseDirectory(_)).
 
 attackGoal(crossSiteScriptingAttack(_)).
-*/
 
+attackGoal(mitmAttack(scada_host, scada_host2)).
+
+*/
 
 /* attackGoal(execCode(scada_host, _)). */
 
+/*
+attackGoal(mitmAttack(scada_host, scada_host2)).
 
-attackGoal(testAttack(scada_host, scada_host2)).
+attackGoal(readWriteFiles(_)).
 
+attackGoal(leakCredential(_)). 
 
+*/
 
+attackGoal(mitmAttack(scada_host, scada_host2)).
+
+/*
 hacl(scada_network, scada_host, _, _). 
 hacl(scada_network, scada_host2, _, _). 
 hacl(scada_host, scada_host2, _, _). 
@@ -42,8 +51,8 @@ hacl(ied2, plc_host1, _, _).
 hostInNetwork(scada_host, scada_network).
 hostInNetwork(scada_host2, scada_network).
 
+*/
 
-/*
 
 isNetwork(scada_network).
 isNetwork(plc_network).
@@ -60,7 +69,7 @@ hostInNetwork(plc_host2, plc_network).
 hostInNetwork(ied1, ied_network).
 hostInNetwork(ied2, ied_network).
 
-*/
+
 /* vulProperty(_vulId, _Range, _Consequence) */
 
 /* search keyword : IED */
@@ -320,7 +329,7 @@ dependsOn('Scada-LTS 2.7.8', 'Scada-LTS 2.7.8 Message Handler').
 
 isProtocol(mms).
 
-vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
+vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
 
 /* programs uses by hosts */
 

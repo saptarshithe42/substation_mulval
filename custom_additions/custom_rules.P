@@ -11,7 +11,9 @@ primitive(uses(Host, Program)).
 primitive(isProtocol(Protocol)). /* -- */
 primitive(vulExistsProtocol(Protocol, Vulnerability)). /* -- */
 
+primitive(isNetwork(Network)). /* -- */
 primitive(hostInNetwork(Host, Network)). /* -- */
+
 
 
 derived(crashDevice(Host)).
@@ -23,22 +25,45 @@ derived(readWriteFiles(Host)).
 derived(traverseDirectory(Host)).
 derived(crossSiteScriptingAttack(Host)).
 
-derived(testAttack(Host1, Host2)).
-
-
-
+derived(mitmAttack(Host1, Host2)).
 
 
 interaction_rule(
-   (testAttack(Host1, Host2) :-
+   (hacl(_src, _dst, _prot, _port) :-
+     isNetwork(_src),
+     hostInNetwork(_dst, _src)),
+   rule_desc('Direct Network Access.',
+   0.5)).
+
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :-
+     hostInNetwork(_src, Network),
+     hostInNetwork(_dst, Network)),
+   rule_desc('Nodes in the same network can access each other.',
+   0.5)).
+
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :-
+     hostInNetwork(_src, Network1),
+     hostInNetwork(_dst, Network2),
+     hacl(Network1, Network2, _, _)),
+   rule_desc('Nodes in different networks can access each other, if network1 to network2 access is allowed.',
+   0.5)).
+
+
+interaction_rule(
+   (mitmAttack(Host1, Host2) :-
       attackerLocated(Network),
       hostInNetwork(Host1, Network),
       hostInNetwork(Host2, Network),
       networkServiceInfo(Host1, _, Protocol, _, _),
       networkServiceInfo(Host2, _, Protocol, _, _),
       vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY')),
-   rule_desc('test attack.',
+   rule_desc('MAN IN THE MIDDLE ATTACK VULNERABILITY',
    0.5)).
+
 
 
 interaction_rule(

@@ -1,6 +1,6 @@
 isProtocol(mms).
 
-vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
+vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
 
 /* programs uses by hosts */
 

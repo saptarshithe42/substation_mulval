@@ -16,11 +16,20 @@ attackGoal(readWriteFiles(_)).
 attackGoal(traverseDirectory(_)).
 
 attackGoal(crossSiteScriptingAttack(_)).
-*/
 
+attackGoal(mitmAttack(scada_host, scada_host2)).
+
+*/
 
 /* attackGoal(execCode(scada_host, _)). */
 
+/*
+attackGoal(mitmAttack(scada_host, scada_host2)).
 
-attackGoal(testAttack(scada_host, scada_host2)).
+attackGoal(readWriteFiles(_)).
 
+attackGoal(leakCredential(_)). 
+
+*/
+
+attackGoal(mitmAttack(scada_host, scada_host2)).

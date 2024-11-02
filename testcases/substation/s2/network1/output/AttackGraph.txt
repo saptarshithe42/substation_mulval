@@ -1,5 +1,5 @@
-1,"testAttack(scada_host,scada_host2)","OR",0
-2,"RULE 25 (test attack.)","AND",0
+1,"mitmAttack(scada_host,scada_host2)","OR",0
+2,"RULE 28 (MAN IN THE MIDDLE ATTACK VULNERABILITY)","AND",0
 3,"vulExistsProtocol(mms,'MAN IN THE MIDDLE ATTACK VULNERABILITY')","LEAF",1
 2,3,-1
 4,"networkServiceInfo(scada_host2,'Rapid SCADA Version 5.8.0',mms,_,_)","LEAF",1
