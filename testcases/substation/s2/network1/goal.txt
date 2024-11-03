@@ -32,4 +32,5 @@ attackGoal(leakCredential(_)).
 
 */
 
+
 attackGoal(mitmAttack(scada_host, scada_host2)).

@@ -1,0 +1,13 @@
+isProtocol('MMS').
+isProtocol('GOOSE').
+
+/* Protocol : Manufacturing Message Specification (MMS) */
+
+vulExistsProtocol('MMS', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
+vulExistsProtocol('MMS', 'EAVESDROPPING VULNERABILITY'). 
+
+
+/* Protocol : Generic Object Oriented Substation Events (GOOSE) */
+
+vulExistsProtocol('GOOSE', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
+

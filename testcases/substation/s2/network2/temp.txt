@@ -1,3 +1,163 @@
+
+/* 
+interaction_rule(
+   (mitmAttack(Host1, Host2) :-
+	isNetwork(Network),
+	hostInNetwork(Host1, Network),
+	hostInNetwork(Host2, Network),
+	attackerLocated(Network),
+	networkServiceInfo(Host1, _, Protocol, _, _),
+	networkServiceInfo(Host2, _, Protocol, _, _),
+	vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY')),
+   rule_desc('If two hosts and attacker are in the same network, and the protocol used to communicate has MITM vulnerability, then MITM attack is possible.',
+   0.5)).
+
+
+interaction_rule(
+   (mitmAttack(Host1, Host2) :-
+	isNetwork(Network1),
+	hostInNetwork(Host1, Network1),
+	hostInNetwork(Host2, Network1),
+	attackerLocated(Network2),
+	hacl(Network2, Network1, _, _),
+	networkServiceInfo(Host1, _, Protocol, _, _),
+	networkServiceInfo(Host2, _, Protocol, _, _),
+	vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY')),
+   rule_desc('If two hosts are in the same network, attacker is on another network but there is access from this network to the hosts network, then attacker can intrude in the hosts network, and the protocol used to communicate has MITM vulnerability, then MITM attack is possible.',
+   0.5)). 
+   
+   
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :- 
+	hostInNetwork(_src, Network),
+	hostInNetwork(_dst, Network)),
+   rule_desc('If two hosts are in the same network, they can access each other.',
+   0.5)). 
+   
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :- 
+	hostInNetwork(_src, Network1),
+	hostInNetwork(_dst, Network2),
+	hacl(Network1, Network2, _prot, _port)),
+   rule_desc('If two hosts are in different networks, and access is allowed between the networks, then the hosts can access each other.',
+   0.5)). 
+   
+   
+interaction_rule(
+  (netAccess(H, Protocol, Port) :-
+	isNetwork(Network),
+	hostInNetwork(H, Network)),
+  rule_desc('direct network access',
+  1.0)). 
+  
+  */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /*
+
+isNetwork(Network).
+
+primitive(hostInNetwork(Host, Network)).
+
+hacl(_src, _dst, _prot, _port) :- 
+	hostInNetwork(_src, Network),
+	hostInNetwork(_dst, Network).
+	
+hacl(_src, _dst, _prot, _port) :- 
+	hostInNetwork(_src, Network1),
+	hostInNetwork(_dst, Network2),
+	hacl(Network1, Network2, _prot, _port).
+
+interaction_rule(
+  (netAccess(H, Protocol, Port) :-
+	isNetwork(Network),
+	hostInNetwork(H, Network)),
+  rule_desc('direct network access',
+  1.0)).
+  
+----------- protocol vulnerabilties -------------------
+
+isProtocol(Protocol).
+
+vulExistsProtocol(Protocol, Vulnerability).
+
+
+mitmAttack(Host1, Host2) :-
+	isNetwork(Network),
+	hostInNetwork(Host1, Network),
+	hostInNetwork(Host2, Network),
+	attackerLocated(Network),
+	networkServiceInfo(Host1, _, Protocol, _, _),
+	networkServiceInfo(Host2, _, Protocol, _, _),
+	vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
+	
+	
+mitmAttack(Host1, Host2) :-
+	isNetwork(Network1),
+	hostInNetwork(Host1, Network1),
+	hostInNetwork(Host2, Network1),
+	attackerLocated(Network2),
+	hacl(Network2, Network1, _, _),
+	networkServiceInfo(Host1, _, Protocol, _, _),
+	networkServiceInfo(Host2, _, Protocol, _, _),
+	vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
+
+*/
+
+
+
+
+
+
+
+
+
+
+primitive(isNetwork(Network)). /* -- */
+primitive(hostInNetwork(Host, Network)). /* -- */
+primitive(isProtocol(Protocol)). /* -- */
+primitive(vulExistsProtocol(Protocol, Vulnerability)). /* -- */
+
+
+
+
+
+
+
+
+
+
+/*
+
+isProtocol(mms).
+
+vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY').
+
+*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 /* custom rules */
 
 primitive(isProgram(ProgramName)).
@@ -24,8 +184,6 @@ derived(serviceDenial(Host)).
 derived(readWriteFiles(Host)).
 derived(traverseDirectory(Host)).
 derived(crossSiteScriptingAttack(Host)).
-
-derived(mitmAttack(Host1, Host2)).
 
 derived(protocolExploit(Host1, Host2, Protocol, Description)).
 
@@ -56,19 +214,6 @@ interaction_rule(
    rule_desc('Nodes in different networks can access each other, if network1 to network2 access is allowed.',
    0.5)).
    
-
-
-interaction_rule(
-   (mitmAttack(Host1, Host2) :-
-      attackerLocated(Network),
-      hostInNetwork(Host1, Network),
-      hostInNetwork(Host2, Network),
-      networkServiceInfo(Host1, _, Protocol, _, _),
-      networkServiceInfo(Host2, _, Protocol, _, _),
-      vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY')),
-   rule_desc('MAN IN THE MIDDLE ATTACK VULNERABILITY',
-   0.5)).
-   
    
 interaction_rule(
    (protocolExploit(Host1, Host2, Protocol, Description) :- 
@@ -78,7 +223,7 @@ interaction_rule(
       networkServiceInfo(Host1, _, Protocol, _, _),
       networkServiceInfo(Host2, _, Protocol, _, _),
       vulExistsProtocol(Protocol, Description)),
-   rule_desc('Protocol Vulnerability Exploit.',
+   rule_desc('Protocol Vulnerability Exploit (attacker directly in same network as victims).',
    0.5)).
    
    
@@ -91,11 +236,12 @@ interaction_rule(
       networkServiceInfo(Host1, _, Protocol, _, _),
       networkServiceInfo(Host2, _, Protocol, _, _),
       vulExistsProtocol(Protocol, Description)),
-   rule_desc('Protocol Vulnerability Exploit.',
+   rule_desc('Protocol Vulnerability Exploit (attacker can propagate to the same network as victims).',
    0.5)).
    
    
 /* ----------------------------- */
+
 
 
 interaction_rule(
@@ -118,6 +264,8 @@ interaction_rule(
       hacl(_intermediate2, _dst, _, _)),
     rule_desc('Three-hop reachability between networks.', 0.5)
 ).
+
+
 
 /* ----------------------------- */
 

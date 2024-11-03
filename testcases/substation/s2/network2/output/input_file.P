@@ -17,14 +17,12 @@ attackGoal(traverseDirectory(_)).
 
 attackGoal(crossSiteScriptingAttack(_)).
 
-attackGoal(mitmAttack(scada_host, scada_host2)).
 
 */
 
 /* attackGoal(execCode(scada_host, _)). */
 
 /*
-attackGoal(mitmAttack(scada_host, scada_host2)).
 
 attackGoal(readWriteFiles(_)).
 
@@ -32,8 +30,34 @@ attackGoal(leakCredential(_)).
 
 */
 
+attackGoal(serviceDenial(_)). 
 
-attackGoal(mitmAttack(scada_host, scada_host2)).
+attackGoal(leakCredential(_)). 
+
+attackGoal(restartDevice(_)).
+
+attackGoal(corruptConfigs(_)).
+
+attackGoal(crashDevice(_)).
+
+attackGoal(readWriteFiles(_)).
+
+attackGoal(traverseDirectory(_)).
+
+attackGoal(crossSiteScriptingAttack(_)).
+
+
+/*
+
+attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Description)).
+
+attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, Description)).
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, Description)).
+
+*/
+
+
 
 /*
 hacl(scada_network, scada_host, _, _). 
@@ -60,6 +84,7 @@ isNetwork(plc_network).
 isNetwork(ied_network).
 
 hacl(scada_network, plc_network, _, _).
+
 hacl(plc_network, ied_network, _, _).
 
 
@@ -280,6 +305,19 @@ vulExistsProgram('EisBaer Scada' ,'CVE-2023-42489').
 vulExistsProgram('Advantech WebAccess version 8.4.5', 'CVE-2023-2866').
 vulExistsProgram('SpiderControl SCADA Webserver version 2.08', 'CVE-2023-3329').
 
+isProtocol('MMS').
+isProtocol('GOOSE').
+
+/* Protocol : Manufacturing Message Specification (MMS) */
+
+vulExistsProtocol('MMS', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
+vulExistsProtocol('MMS', 'EAVESDROPPING VULNERABILITY'). 
+
+
+/* Protocol : Generic Object Oriented Substation Events (GOOSE) */
+
+vulExistsProtocol('GOOSE', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
+
 /* search keyword : IED */
 
 dependsOn('GE UR Firmware', 'GE UR bootloader binary Version X.YZ'). /* examples below */
@@ -328,9 +366,7 @@ dependsOn('Scada-LTS 2.7.8', 'Scada-LTS 2.7.8 Message Handler').
 
 
 
-isProtocol(mms).
 
-vulExistsProtocol(mms, 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
 
 /* programs uses by hosts */
 
@@ -343,20 +379,20 @@ uses(ied2, 'GE UR Firmware').
 
 /* scada host / HMI */
 
-networkServiceInfo(scada_host, 'Rapid SCADA Version 5.8.0', mms, _, _).
+networkServiceInfo(scada_host, 'Rapid SCADA Version 5.8.0', 'GOOSE', _, _).
 
-networkServiceInfo(scada_host2, 'Rapid SCADA Version 5.8.0', mms, _, _).
+networkServiceInfo(scada_host2, 'Rapid SCADA Version 5.8.0', 'GOOSE', _, _).
 
 /* PLC host 1 */
-networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', _, _, _).
+networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', 'MMS', _, _).
 
 /* PLC host 2 */
-networkServiceInfo(plc_host2, 'Eaton easyE4 PLC Software', _, _, _).
+networkServiceInfo(plc_host2, 'Eaton easyE4 PLC Software', 'MMS', _, _).
 
 /* IED1 */
-networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', _, _, _). 
+networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', 'MMS', _, _). 
 
 /* IED2 */
-networkServiceInfo(ied2, 'GE UR Firmware', _, _, _).
+networkServiceInfo(ied2, 'GE UR Firmware', 'MMS', _, _).
 
 
