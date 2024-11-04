@@ -1,5 +1,6 @@
 attackerLocated(scada_network).
 
+
 /*
 attackGoal(serviceDenial(_)). 
 
@@ -28,33 +29,43 @@ attackGoal(readWriteFiles(_)).
 
 attackGoal(leakCredential(_)). 
 
+attackGoal(protocolExploit(ied1, ied2, Protocol, Vulnerability)).
+
 */
 
-attackGoal(serviceDenial(_)). 
-
-attackGoal(leakCredential(_)). 
-
-attackGoal(restartDevice(_)).
-
-attackGoal(corruptConfigs(_)).
-
-attackGoal(crashDevice(_)).
+/*
 
 attackGoal(readWriteFiles(_)).
 
-attackGoal(traverseDirectory(_)).
+attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, 'Password Crack Attacks')).
 
-attackGoal(crossSiteScriptingAttack(_)).
+--
+*/
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'Integrity Violation')).
 
 
 /*
 
-attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Description)).
+attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Vulnerability)).
 
-attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, Description)).
+attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, Vulnerability)).
 
-attackGoal(protocolExploit(ied1, ied2, Protocol, Description)).
+attackGoal(protocolExploit(ied1, ied2, Protocol, Vulnerability)).
 
 */
 
+
+/*  ******
+
+attackGoal(leakCredential(plc_host2)). 
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'Man In The Middle Attack')).
+
+----------------------------
+
+attackGoal(leakCredential(plc_host2)). 
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'REPLAY')).
+*/
 

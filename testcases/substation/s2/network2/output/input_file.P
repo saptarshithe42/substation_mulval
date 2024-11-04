@@ -1,5 +1,6 @@
 attackerLocated(scada_network).
 
+
 /*
 attackGoal(serviceDenial(_)). 
 
@@ -28,35 +29,45 @@ attackGoal(readWriteFiles(_)).
 
 attackGoal(leakCredential(_)). 
 
+attackGoal(protocolExploit(ied1, ied2, Protocol, Vulnerability)).
+
 */
 
-attackGoal(serviceDenial(_)). 
-
-attackGoal(leakCredential(_)). 
-
-attackGoal(restartDevice(_)).
-
-attackGoal(corruptConfigs(_)).
-
-attackGoal(crashDevice(_)).
+/*
 
 attackGoal(readWriteFiles(_)).
 
-attackGoal(traverseDirectory(_)).
+attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, 'Password Crack Attacks')).
 
-attackGoal(crossSiteScriptingAttack(_)).
+--
+*/
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'Integrity Violation')).
 
 
 /*
 
-attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Description)).
+attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Vulnerability)).
 
-attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, Description)).
+attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, Vulnerability)).
 
-attackGoal(protocolExploit(ied1, ied2, Protocol, Description)).
+attackGoal(protocolExploit(ied1, ied2, Protocol, Vulnerability)).
 
 */
 
+
+/*  ******
+
+attackGoal(leakCredential(plc_host2)). 
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'Man In The Middle Attack')).
+
+----------------------------
+
+attackGoal(leakCredential(plc_host2)). 
+
+attackGoal(protocolExploit(ied1, ied2, Protocol, 'REPLAY')).
+*/
 
 
 /*
@@ -75,8 +86,8 @@ hacl(ied2, plc_host1, _, _).
 
 hostInNetwork(scada_host, scada_network).
 hostInNetwork(scada_host2, scada_network).
-
 */
+
 
 
 isNetwork(scada_network).
@@ -307,16 +318,60 @@ vulExistsProgram('SpiderControl SCADA Webserver version 2.08', 'CVE-2023-3329').
 
 isProtocol('MMS').
 isProtocol('GOOSE').
+isProtocol('SV').
+isProtocol('R-GOOSE').
+isProtocol('R-SV').
 
 /* Protocol : Manufacturing Message Specification (MMS) */
 
-vulExistsProtocol('MMS', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
-vulExistsProtocol('MMS', 'EAVESDROPPING VULNERABILITY'). 
+vulExistsProtocol('MMS', 'Man In The Middle Attack'). 
+vulExistsProtocol('MMS', 'Denial Of Service'). 
+vulExistsProtocol('MMS', 'Eavesdropping'). 
+vulExistsProtocol('MMS', 'False Data Injection'). 
+vulExistsProtocol('MMS', 'Integrity Violation'). 
+vulExistsProtocol('MMS', 'Password Crack Attacks'). 
 
 
 /* Protocol : Generic Object Oriented Substation Events (GOOSE) */
 
-vulExistsProtocol('GOOSE', 'MAN IN THE MIDDLE ATTACK VULNERABILITY'). 
+vulExistsProtocol('GOOSE', 'Replay').
+vulExistsProtocol('GOOSE', 'Integrity Violation').  
+vulExistsProtocol('GOOSE', 'Masquerade').
+vulExistsProtocol('GOOSE', 'Denial Of Service').
+vulExistsProtocol('GOOSE', 'Data Manipulation').
+vulExistsProtocol('GOOSE', 'False Data Injection').    
+
+/* Protocol : Sampled Values (SV) */
+
+vulExistsProtocol('SV', 'Replay').
+vulExistsProtocol('SV', 'Integrity Violation').  
+vulExistsProtocol('SV', 'Masquerade').
+vulExistsProtocol('SV', 'Denial Of Service').
+vulExistsProtocol('SV', 'Data Manipulation').
+vulExistsProtocol('SV', 'False Data Injection'). 
+
+
+/* Protocol : Routable - Generic Object Oriented Substation Events (R-GOOSE) */
+
+vulExistsProtocol('R-GOOSE', 'Man In The Middle Attack').
+vulExistsProtocol('R-GOOSE', 'Denial Of Service').  
+vulExistsProtocol('R-GOOSE', 'Masquerade').
+vulExistsProtocol('R-GOOSE', 'Replay').
+vulExistsProtocol('R-GOOSE', 'False Data Injection').  
+vulExistsProtocol('R-GOOSE', 'Integrity Violation').
+vulExistsProtocol('R-GOOSE', 'Password Crack Attacks').
+
+
+/* Protocol : Routable - Sampled Values (R-SV) */
+
+vulExistsProtocol('R-SV', 'Man In The Middle Attack').
+vulExistsProtocol('R-SV', 'Denial Of Service').  
+vulExistsProtocol('R-SV', 'Masquerade').
+vulExistsProtocol('R-SV', 'Replay').
+vulExistsProtocol('R-SV', 'False Data Injection').  
+vulExistsProtocol('R-SV', 'Integrity Violation').
+vulExistsProtocol('R-SV', 'Password Crack Attacks').
+
 
 /* search keyword : IED */
 
@@ -390,9 +445,9 @@ networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', '
 networkServiceInfo(plc_host2, 'Eaton easyE4 PLC Software', 'MMS', _, _).
 
 /* IED1 */
-networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', 'MMS', _, _). 
+networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', 'SV', _, _). 
 
 /* IED2 */
-networkServiceInfo(ied2, 'GE UR Firmware', 'MMS', _, _).
+networkServiceInfo(ied2, 'GE UR Firmware', 'SV', _, _).
 
 

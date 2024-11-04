@@ -1,5 +1,8 @@
 /* custom rules */
 
+
+/* Program / Library vulnerabilities exploit related predicates */
+
 primitive(isProgram(ProgramName)).
 primitive(isLibrary(LibraryName)).
 primitive(dependsOn(Program, Library)).
@@ -8,13 +11,18 @@ primitive(vulExistsLibrary(Library, CVE_ID, Range, Consequence)).
 primitive(vulExistsProgram(Program, CVE_ID)).
 primitive(vulExistsProgram(Program, CVE_ID, Range, Consequence)).
 primitive(uses(Host, Program)).
-primitive(isProtocol(Protocol)). /* -- */
-primitive(vulExistsProtocol(Protocol, Vulnerability)). /* -- */
 
-primitive(isNetwork(Network)). /* -- */
-primitive(hostInNetwork(Host, Network)). /* -- */
+/* Protocol vulnerability exploit related predicates */
 
+primitive(isProtocol(Protocol)). 
+primitive(vulExistsProtocol(Protocol, Vulnerability)). 
 
+/* Network definition */
+
+primitive(isNetwork(Network)). 
+primitive(hostInNetwork(Host, Network)). 
+
+/* Attack Goals */
 
 derived(crashDevice(Host)).
 derived(restartDevice(Host)).
@@ -24,13 +32,12 @@ derived(serviceDenial(Host)).
 derived(readWriteFiles(Host)).
 derived(traverseDirectory(Host)).
 derived(crossSiteScriptingAttack(Host)).
-
-derived(mitmAttack(Host1, Host2)).
-
-derived(protocolExploit(Host1, Host2, Protocol, Description)).
-
+derived(protocolExploit(Host1, Host2, Protocol, Vulnerability)).
 derived(reachable(_src, _dst)).
 
+
+
+/* Custom rule definitions */
 
 interaction_rule(
    (hacl(_src, _dst, _prot, _port) :-
@@ -56,41 +63,29 @@ interaction_rule(
    rule_desc('Nodes in different networks can access each other, if network1 to network2 access is allowed.',
    0.5)).
    
-
-
+   
+   
 interaction_rule(
-   (mitmAttack(Host1, Host2) :-
+   (protocolExploit(Host1, Host2, Protocol, Vulnerability) :- 
       attackerLocated(Network),
       hostInNetwork(Host1, Network),
       hostInNetwork(Host2, Network),
       networkServiceInfo(Host1, _, Protocol, _, _),
       networkServiceInfo(Host2, _, Protocol, _, _),
-      vulExistsProtocol(Protocol, 'MAN IN THE MIDDLE ATTACK VULNERABILITY')),
-   rule_desc('MAN IN THE MIDDLE ATTACK VULNERABILITY',
-   0.5)).
-   
-   
-interaction_rule(
-   (protocolExploit(Host1, Host2, Protocol, Description) :- 
-      attackerLocated(Network),
-      hostInNetwork(Host1, Network),
-      hostInNetwork(Host2, Network),
-      networkServiceInfo(Host1, _, Protocol, _, _),
-      networkServiceInfo(Host2, _, Protocol, _, _),
-      vulExistsProtocol(Protocol, Description)),
+      vulExistsProtocol(Protocol, Vulnerability)),
    rule_desc('Protocol Vulnerability Exploit.',
    0.5)).
    
    
 interaction_rule(
-   (protocolExploit(Host1, Host2, Protocol, Description) :- 
+   (protocolExploit(Host1, Host2, Protocol, Vulnerability) :- 
       attackerLocated(Network1),
       hostInNetwork(Host1, Network2),
       hostInNetwork(Host2, Network2),
       reachable(Network1, Network2),
       networkServiceInfo(Host1, _, Protocol, _, _),
       networkServiceInfo(Host2, _, Protocol, _, _),
-      vulExistsProtocol(Protocol, Description)),
+      vulExistsProtocol(Protocol, Vulnerability)),
    rule_desc('Protocol Vulnerability Exploit.',
    0.5)).
    

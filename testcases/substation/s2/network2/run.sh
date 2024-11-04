@@ -31,4 +31,6 @@ cd output
 cp $BASEPATH/$customRules $customRules
 cp ../$inputFile $inputFile
 
-graph_gen.sh "$inputFile" -p -v -a "$customRules"
+# graph_gen.sh "$inputFile" -p -v -a "$customRules"
+
+graph_gen.sh "$inputFile" -p -v --nometric -a "$customRules"

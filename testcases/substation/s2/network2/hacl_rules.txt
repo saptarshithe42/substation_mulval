@@ -15,8 +15,8 @@ hacl(ied2, plc_host1, _, _).
 
 hostInNetwork(scada_host, scada_network).
 hostInNetwork(scada_host2, scada_network).
-
 */
+
 
 
 isNetwork(scada_network).

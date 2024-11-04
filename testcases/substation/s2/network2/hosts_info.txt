@@ -22,9 +22,9 @@ networkServiceInfo(plc_host1, 'SEPCOS Single Package firmware version 1.24.0', '
 networkServiceInfo(plc_host2, 'Eaton easyE4 PLC Software', 'MMS', _, _).
 
 /* IED1 */
-networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', 'MMS', _, _). 
+networkServiceInfo(ied1, 'Relion 670 series version 2.2.0 Firmware', 'SV', _, _). 
 
 /* IED2 */
-networkServiceInfo(ied2, 'GE UR Firmware', 'MMS', _, _).
+networkServiceInfo(ied2, 'GE UR Firmware', 'SV', _, _).
 
 
