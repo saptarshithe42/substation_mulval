@@ -45,6 +45,7 @@ attackGoal(protocolExploit(plc_host1, plc_host2, Protocol, 'Password Crack Attac
 attackGoal(protocolExploit(ied1, ied2, Protocol, 'Integrity Violation')).
 
 
+
 /*
 
 attackGoal(protocolExploit(scada_host, scada_host2, Protocol, Vulnerability)).
