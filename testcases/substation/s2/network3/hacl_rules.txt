@@ -1,0 +1,38 @@
+
+/*
+hacl(scada_network, scada_host, _, _). 
+hacl(scada_network, scada_host2, _, _). 
+hacl(scada_host, scada_host2, _, _). 
+hacl(scada_host, plc_host1, _, _).
+hacl(plc_host1, scada_host, _, _).
+hacl(plc_host1, ied1, _, _).
+hacl(scada_host, plc_host2, _, _).
+hacl(plc_host2, scada_host, _, _).
+hacl(plc_host2, ied2, _, _).
+hacl(ied1, plc_host1, _, _).
+hacl(plc_host1, ied2, _, _).
+hacl(ied2, plc_host1, _, _).
+
+hostInNetwork(scada_host, scada_network).
+hostInNetwork(scada_host2, scada_network).
+*/
+
+
+
+isNetwork(scada_network).
+isNetwork(plc_network).
+isNetwork(ied_network).
+
+hacl(scada_network, plc_network, _, _).
+
+hacl(plc_network, ied_network, _, _).
+
+
+hostInNetwork(scada_host, scada_network).
+hostInNetwork(scada_host2, scada_network).
+hostInNetwork(plc_host1, plc_network).
+hostInNetwork(plc_host2, plc_network).
+hostInNetwork(ied1, ied_network).
+hostInNetwork(ied2, ied_network).
+
+

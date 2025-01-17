@@ -1,5 +1,6 @@
 vulExistsLibraryFile="vulExistsLibrary.txt"
 vulExistsProgramFile="vulExistsProgram.txt"
+vulExistsProtocolFile="vulExistsProtocol.txt"
 vulPropertyListFile="vulPropertyList.txt"
 programUsesLibrary="programUsesLibrary.txt"
 goal="goal.txt"
@@ -20,6 +21,7 @@ cat $haclRules >>$inputFile
 cat $BASEPATH/$vulPropertyListFile >>$inputFile
 cat $BASEPATH/$vulExistsLibraryFile >>$inputFile
 cat $BASEPATH/$vulExistsProgramFile >>$inputFile
+cat $BASEPATH/$vulExistsProtocolFile >>$inputFile
 cat $BASEPATH/$programUsesLibrary >>$inputFile
 cat $hostsInfo >>$inputFile
 
@@ -29,4 +31,6 @@ cd output
 cp $BASEPATH/$customRules $customRules
 cp ../$inputFile $inputFile
 
-graph_gen.sh "$inputFile" --simple --nometric -p -v -a "$customRules"
+# graph_gen.sh "$inputFile" -p -v -a "$customRules"
+
+graph_gen.sh "$inputFile" -p -v --nometric --simple -a "$customRules"

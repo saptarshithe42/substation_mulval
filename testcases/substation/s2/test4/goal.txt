@@ -1,5 +1,7 @@
 attackerLocated(scada_network).
 
+/*
+
 attackGoal(serviceDenial(_)). 
 
 attackGoal(leakCredential(_)). 
@@ -15,4 +17,8 @@ attackGoal(readWriteFiles(_)).
 attackGoal(traverseDirectory(_)).
 
 attackGoal(crossSiteScriptingAttack(_)).
+
+*/
+
+attackGoal(corruptConfigs(_)).
 

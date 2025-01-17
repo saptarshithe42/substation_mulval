@@ -1,0 +1,214 @@
+/* custom rules */
+
+
+/* Program / Library vulnerabilities exploit related predicates */
+
+primitive(isProgram(ProgramName)).
+primitive(isLibrary(LibraryName)).
+primitive(dependsOn(Program, Library)).
+primitive(vulExistsLibrary(Library, CVE_ID)).
+primitive(vulExistsLibrary(Library, CVE_ID, Range, Consequence)).
+primitive(vulExistsProgram(Program, CVE_ID)).
+primitive(vulExistsProgram(Program, CVE_ID, Range, Consequence)).
+primitive(uses(Host, Program)).
+
+/* Protocol vulnerability exploit related predicates */
+
+primitive(isProtocol(Protocol)). 
+primitive(vulExistsProtocol(Protocol, Vulnerability)). 
+
+/* Network definition */
+
+primitive(isNetwork(Network)). 
+primitive(hostInNetwork(Host, Network)). 
+
+/* Attack Goals */
+
+derived(crashDevice(Host)).
+derived(restartDevice(Host)).
+derived(leakCredential(Host)).
+derived(corruptConfigs(Host)).
+derived(serviceDenial(Host)).
+derived(readWriteFiles(Host)).
+derived(traverseDirectory(Host)).
+derived(crossSiteScriptingAttack(Host)).
+derived(protocolExploit(Host1, Host2, Protocol, Vulnerability)).
+derived(reachable(_src, _dst)).
+
+
+
+/* Custom rule definitions */
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :-
+     isNetwork(_src),
+     hostInNetwork(_dst, _src)),
+   rule_desc('Direct Network Access.',
+   0.5)).
+
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :-
+     hostInNetwork(_src, Network),
+     hostInNetwork(_dst, Network)),
+   rule_desc('Nodes in the same network can access each other.',
+   0.5)).
+
+
+interaction_rule(
+   (hacl(_src, _dst, _prot, _port) :-
+     hostInNetwork(_src, Network1),
+     hostInNetwork(_dst, Network2),
+     hacl(Network1, Network2, _, _)),
+   rule_desc('Nodes in different networks can access each other, if network1 to network2 access is allowed.',
+   0.5)).
+   
+   
+   
+interaction_rule(
+   (protocolExploit(Host1, Host2, Protocol, Vulnerability) :- 
+      attackerLocated(Network),
+      hostInNetwork(Host1, Network),
+      hostInNetwork(Host2, Network),
+      networkServiceInfo(Host1, _, Protocol, _, _),
+      networkServiceInfo(Host2, _, Protocol, _, _),
+      vulExistsProtocol(Protocol, Vulnerability)),
+   rule_desc('Protocol Vulnerability Exploit.',
+   0.5)).
+   
+   
+interaction_rule(
+   (protocolExploit(Host1, Host2, Protocol, Vulnerability) :- 
+      attackerLocated(Network1),
+      hostInNetwork(Host1, Network2),
+      hostInNetwork(Host2, Network2),
+      reachable(Network1, Network2),
+      networkServiceInfo(Host1, _, Protocol, _, _),
+      networkServiceInfo(Host2, _, Protocol, _, _),
+      vulExistsProtocol(Protocol, Vulnerability)),
+   rule_desc('Protocol Vulnerability Exploit.',
+   0.5)).
+   
+   
+/* ----------------------------- */
+
+
+interaction_rule(
+    (reachable(_src, _dst) :- 
+      hacl(_src, _dst, _, _)),
+    rule_desc('Direct reachability between networks.', 0.5)
+).
+
+interaction_rule(
+    (reachable(_src, _dst) :- 
+      hacl(_src, _intermediate, _, _),
+      hacl(_intermediate, _dst, _, _)),
+    rule_desc('Two-hop reachability between networks.', 0.5)
+).
+
+interaction_rule(
+    (reachable(_src, _dst) :- 
+      hacl(_src, _intermediate1, _, _),
+      hacl(_intermediate1, _intermediate2, _, _),
+      hacl(_intermediate2, _dst, _, _)),
+    rule_desc('Three-hop reachability between networks.', 0.5)
+).
+
+/* ----------------------------- */
+
+interaction_rule(
+   (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
+   	uses(Host, Program),
+	   dependsOn(Program, Library),
+	   vulExistsLibrary(Library, CVE_ID, Range, Consequence)),
+   rule_desc('If a host runs a program, which depends on a library, that has a vulnerability, then the host also has the same vulnerability.',
+   0.5)).
+   
+   
+interaction_rule(
+   (vulExists(Host, CVE_ID, Program, Range, Consequence) :-
+   	uses(Host, Program),
+	   vulExistsProgram(Program, CVE_ID, Range, Consequence)),
+   rule_desc('If a host runs a program, that has a vulnerability, then the host also has the same vulnerability.',
+   0.5)).
+
+
+interaction_rule(
+   (vulExistsLibrary(Library, CVE_ID, Range, Consequence) :-
+   	vulExistsLibrary(Library, CVE_ID),
+	   vulProperty(CVE_ID, Range, Consequence)),
+   rule_desc('Library Vulnerability.',
+   0.5)).
+
+
+interaction_rule(
+   (vulExistsProgram(Program, CVE_ID, Range, Consequence) :-
+   	vulExistsProgram(Program, CVE_ID),
+	   vulProperty(CVE_ID, Range, Consequence)),
+   rule_desc('Program Vulnerability.',
+   0.5)).
+   
+
+interaction_rule(
+   (crashDevice(Host) :-
+   	execCode(Host, _),
+	vulExists(Host, CVE_ID, Program, remoteExploit, deviceCrash)),
+   rule_desc('Vulnerability that leads to device crash.',
+   0.5)).
+   
+   
+interaction_rule(
+   (restartDevice(Host) :-
+   	execCode(Host, _),
+	   vulExists(Host, CVE_ID, Program, localExploit, deviceRestart)),
+      rule_desc('Vulnerability that leads to device restart.',
+   0.5)).
+   
+   
+interaction_rule(
+   (leakCredential(Host) :-
+   	/* execCode(Host, _), */
+   	netAccess(Host, _, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, credentialLeak)),
+      rule_desc('Vulnerability that leads to credential leakage.',
+   0.5)).
+
+interaction_rule(
+   (corruptConfigs(Host) :-
+   	execCode(Host, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, configsCorruption)),
+   rule_desc('Vulnerability that leads to corruption of device configurations.',
+   0.5)).
+
+
+interaction_rule(
+   (serviceDenial(Host) :-
+      netAccess(Host, _, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, denialOfService)),
+   rule_desc('Vulnerability that leads to denial of service.',
+   0.5)).
+
+
+interaction_rule(
+   (readWriteFiles(Host) :-
+      netAccess(Host, _, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, fileReadWrite)),
+   rule_desc('Vulnerability that enables reading and/or writing files on the device.',
+   0.5)).
+
+
+interaction_rule(
+   (traverseDirectory(Host) :-
+      netAccess(Host, _, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, directoryTraversal)),
+   rule_desc('Vulnerability that enables directory traversal.',
+   0.5)).
+
+
+interaction_rule(
+   (crossSiteScriptingAttack(Host) :-
+      netAccess(Host, _, _),
+	   vulExists(Host, CVE_ID, Program, remoteExploit, crossSiteScripting)),
+   rule_desc('Vulnerability that enables cross site scripting.',
+   0.5)).
+

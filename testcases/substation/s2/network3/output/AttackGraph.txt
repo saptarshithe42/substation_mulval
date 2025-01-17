@@ -1,0 +1,23 @@
+1,"protocolExploit(ied1,ied2,'SV','Integrity Violation')","OR",0
+2,"RULE 29 (Protocol Vulnerability Exploit.)","AND",0
+3,"vulExistsProtocol('SV','Integrity Violation')","LEAF",1
+2,3,-1
+4,"networkServiceInfo(ied2,'GE UR Firmware','SV',_,_)","LEAF",1
+2,4,-1
+5,"networkServiceInfo(ied1,'Relion 670 series version 2.2.0 Firmware','SV',_,_)","LEAF",1
+2,5,-1
+6,"reachable(scada_network,ied_network)","OR",0
+7,"RULE 31 (Two-hop reachability between networks.)","AND",0
+8,"hacl(plc_network,ied_network,_,_)","LEAF",1
+7,8,-1
+9,"hacl(scada_network,plc_network,_,_)","LEAF",1
+7,9,-1
+6,7,-1
+2,6,-1
+10,"hostInNetwork(ied2,ied_network)","LEAF",1
+2,10,-1
+11,"hostInNetwork(ied1,ied_network)","LEAF",1
+2,11,-1
+12,"attackerLocated(scada_network)","LEAF",1
+2,12,-1
+1,2,-1
