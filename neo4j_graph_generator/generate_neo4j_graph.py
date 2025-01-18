@@ -1,11 +1,13 @@
 from neo4j import GraphDatabase, RoutingControl
 import xml.dom.minidom
-
+import datetime
+import uuid
 
 URI = "neo4j://localhost:7687"
 AUTH = ("mulval", "12345678")
 attackGraph = "AttackGraph.xml"
 
+graphId = uuid.uuid4()
 
 docs = xml.dom.minidom.parse(attackGraph)
 
@@ -17,7 +19,7 @@ def getText(nodelist):
     for node in nodelist:
         if node.nodeType == node.TEXT_NODE:
             rc.append(node.data)
-    return ''.join(rc)
+    return "".join(rc)
 
 
 indegreeCount = {}
@@ -49,9 +51,13 @@ for arc in arcs:
     else:
         outdegreeCount[edgeSrc] = 1
 
-    command = f'MATCH (a:node {{nodeId: "{edgeSrc}"}}), (b:node {{nodeId: "{edgeDst}"}}) CREATE (a)-[:TO]->(b)'
+    command = f'MATCH (a:node {{nodeId: "{edgeSrc}", graphId : "{graphId}"}}), (b:node {{nodeId: "{edgeDst}", graphId : "{graphId}"}}) CREATE (a)-[:TO]->(b)'
     createEdgesCommands.append(command)
 
+
+# timestampNodeEdge = f'MATCH (a:node {{nodeId: "0", graphId : "{graphId}"}}), (b:node {{nodeId: "1", graphId : "{graphId}"}}) CREATE (b)-[:TO]->(a)'
+
+# createEdgesCommands.append(timestampNodeEdge)
 
 for cmd in createEdgesCommands:
     print(cmd)
@@ -84,14 +90,20 @@ for vertex in vertices:
 
     if nodeId not in outdegreeCount and indegreeCount[nodeId] == 1:
         labels.append("goal")
+        timestampNodeEdge = f'MATCH (a:node {{nodeId: "0", graphId : "{graphId}"}}), (b:node {{nodeId: "{nodeId}", graphId : "{graphId}"}}) CREATE (b)-[:TO]->(a)'
+        createEdgesCommands.append(timestampNodeEdge)
 
     labels = [":" + x for x in labels]
     nodeLabels = " ".join(labels)
 
-    command = f'CREATE ({nodeLabels} {{nodeId : "{nodeId}", description : "{description}"}})'
+    command = f'CREATE ({nodeLabels} {{nodeId : "{nodeId}", description : "{description}", graphId : "{graphId}"}})'
 
     createNodeCommands.append(command)
 
+currentTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+timestampNode = f'CREATE (:node :timestamp {{nodeId : "0", timestamp: "{currentTime}", graphId : "{graphId}"}})'
+
+createNodeCommands.append(timestampNode)
 
 for cmd in createNodeCommands:
     print(cmd)
